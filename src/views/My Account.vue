@@ -1,5 +1,6 @@
 <template>
   <div class="about">
-    <h1>My Account</h1>
+    <br />
+    <h3>My Account content</h3>
   </div>
 </template>

@@ -1,5 +1,6 @@
 <template>
   <div class="about">
-    <h1>Search Results</h1>
+    <br />
+    <h3>Search Results content</h3>
   </div>
 </template>

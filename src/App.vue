@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!---TopNav--------------------------------------------------------->
-    <div id="nav">
+    <div id="topNav">
       <nav
         class="navbar navbar-expand-lg navbar-light "
         style="background-color: #8763B5;"
@@ -11,12 +11,12 @@
             <a
               class="navbar-brand logo"
               href="#"
-              style="color: white; font-size:70px;"
+              style="color: white; font-size:90px;"
             >
               Script
             </a>
           </router-link>
-          <!--plusIcon------>
+          <!--PlusIcon------>
           <router-link to="/add_script">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@
               />
             </svg>
           </router-link>
-          <!--plusIcon------>
+          <!--PlusIcon------>
           <button
             class="navbar-toggler"
             type="button"
@@ -70,7 +70,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <!--filterIcon------>
+                  <!--FilterIcon------>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="30"
@@ -86,7 +86,7 @@
                       d="M6 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
                     />
                   </svg>
-                  <!--filterIcon------>
+                  <!--FilterIcon------>
                 </a>
                 <ul
                   class="dropdown-menu"
@@ -109,7 +109,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <!--notificationIcon------>
+                  <!--NotificationIcon------>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="30"
@@ -122,7 +122,7 @@
                       d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"
                     />
                   </svg>
-                  <!--notificationIcon------>
+                  <!--NotificationIcon------>
                 </a>
                 <ul
                   class="dropdown-menu"
@@ -135,7 +135,7 @@
               <li class="nav-item">
                 <router-link to="/my_downloads">
                   <a class="nav-link" href="#">
-                    <!--downloadIcon------>
+                    <!--DownloadIcon------>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="30"
@@ -151,14 +151,14 @@
                         d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
                       />
                     </svg>
-                    <!--downloadIcon------>
+                    <!--DownloadIcon------>
                   </a>
                 </router-link>
               </li>
               <li class="nav-item">
                 <router-link to="/my_account">
                   <a class="nav-link" href="#">
-                    <!--accountIcon------>
+                    <!--AccountIcon------>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="30"
@@ -173,7 +173,7 @@
                         d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
                       />
                     </svg>
-                    <!--accountIcon------>
+                    <!--AccountIcon------>
                   </a>
                 </router-link>
               </li>
@@ -181,9 +181,74 @@
           </div>
         </div>
       </nav>
-      <!---TopNav--------------------------------------------------------->
-      <br />
-      <!--<div id="pages">
+    </div>
+    <!---TopNav--------------------------------------------------------->
+
+    <!---HeadingNav----------------------------------------------------->
+    <nav class="headingNav">
+      <span class="row mb-0">
+        <div class="col-4 d-flex justify-content-center"></div>
+        <h1
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Home')"
+        >
+          Home
+        </h1>
+        <h1
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Add Script')"
+        >
+          Add Script
+        </h1>
+        <h1
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('My Account')"
+        >
+          My Account
+        </h1>
+        <h1
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('My Downloads')"
+        >
+          My Downloads
+        </h1>
+        <h1
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Script')"
+        >
+          Script
+        </h1>
+        <h1
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Search Results')"
+        >
+          Search Results
+        </h1>
+        <h1
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Study')"
+        >
+          Study
+        </h1>
+        <h1
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Subject')"
+        >
+          Subject
+        </h1>
+        <h1
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('University')"
+        >
+          University
+        </h1>
+
+        <div class="col-4 d-flex justify-content-center"></div>
+      </span>
+    </nav>
+    <!---HeadingNav----------------------------------------------------->
+
+    <!--<div id="pages">
         <router-link to="/">Home</router-link>
         |
         <router-link to="/add_script">Add Script</router-link>
@@ -202,12 +267,33 @@
         |
         <router-link to="/university">University</router-link>
       </div>-->
-    </div>
     <router-view />
   </div>
 </template>
 
+<script>
+import router from '@/router';
+
+export default {
+  methods: {
+    //promjena naziva stranice ovisno o ruti
+    checkRoute(route) {
+      if (this.$route.name == route) return true;
+      else return false;
+    },
+  },
+};
+</script>
+
 <style lang="scss">
+.headingNav {
+  width: 100%;
+  height: 70px;
+  background-color: #d1c1ed;
+  padding: 10px;
+  justify-content: center;
+  text-align: center;
+}
 //---ikone------------------------//
 .bi-plus-circle-fill {
   color: #16c937;
@@ -225,7 +311,6 @@
 .bi-person-circle {
   color: white;
 }
-
 //---ikone------------------------//
 .nav-link {
   color: white;

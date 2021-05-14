@@ -1,5 +1,6 @@
 <template>
   <div class="about">
-    <h1>My Downloads</h1>
+    <br />
+    <h3>My Downloads content</h3>
   </div>
 </template>

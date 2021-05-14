@@ -1,5 +1,6 @@
 <template>
   <div class="about">
-    <h1>Subject</h1>
+    <br />
+    <h3>Subject content</h3>
   </div>
 </template>

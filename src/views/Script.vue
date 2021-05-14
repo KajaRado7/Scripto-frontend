@@ -1,5 +1,6 @@
 <template>
   <div class="about">
-    <h1>Script</h1>
+    <br />
+    <h3>Script content</h3>
   </div>
 </template>
