@@ -13,7 +13,14 @@
               href="#"
               style="color: white; font-size:90px;"
             >
-              Script
+              <!--Logo------>
+              <img
+                src="@/assets/logo.png"
+                height="100"
+                class="d-inline-block logo"
+                loading="lazy"
+              />
+              <!--Logo------>
             </a>
           </router-link>
           <!--PlusIcon------>
@@ -286,6 +293,9 @@ export default {
 </script>
 
 <style lang="scss">
+.logo {
+  margin-right: 3px;
+}
 .headingNav {
   width: 100%;
   height: 70px;
@@ -327,6 +337,12 @@ export default {
 }
 .dropdown-item {
   border-radius: 30px;
+}
+body {
+  background-image: url('~@/assets/background.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 #app {
   font-family: Helvetica, Arial, sans-serif;
