@@ -2,9 +2,9 @@
   <div id="app">
     <!---TopNav--------------------------------------------------------->
     <div id="topNav">
-      <nav class="navbar navbar-expand-md topNav">
+      <nav class="navbar navbar-expand-lg topNav">
         <div
-          class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"
+          class="navbar-collapse collapse w-68 order-1 order-md-0 dual-collapse2"
         >
           <ul class="navbar-nav mr-auto">
             <li class="nav-item logo">
@@ -25,7 +25,10 @@
                 </a>
               </router-link>
             </li>
-            <li class="nav-item plusCircle">
+            <li
+              class="nav-item plusCircle"
+              style="display:flex;align-items:center"
+            >
               <router-link to="/add_script">
                 <!--PlusIcon------>
                 <svg
@@ -45,6 +48,17 @@
             </li>
           </ul>
         </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="mx-auto">
           <!--searchBar ( u doradi )-->
           <form class="search d-flex">
@@ -54,13 +68,14 @@
               placeholder="Search"
               aria-label="Search"
             />
-            <button class="btn btn-outline-success" type="submit">
+            <button class="btn" type="submit">
               Search
             </button>
           </form>
           <!--searchBar ( u doradi )-->
         </div>
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+
+        <div class="navbar-collapse collapse w-68 order-3 dual-collapse2">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown rightIcons">
               <a
@@ -135,7 +150,8 @@
                 class="dropdown-menu"
                 aria-labelledby="navbarScrollingDropdown"
               >
-                <li><a class="dropdown-item" href="#">Notification</a></li>
+                <li><a class="dropdown-item" href="#">Notification1</a></li>
+                <li><a class="dropdown-item" href="#">Notification2</a></li>
               </ul>
             </li>
             <li class="nav-item rightIcons">
@@ -264,20 +280,20 @@
     </nav>
     <!---HeadingNav----------------------------------------------------->
 
-    <!---LeftNav-------------------------------------------------------->
     <div class="row ">
-      <div class="col-2">lijevo</div>
+      <div class="col-2">
+        <!---LeftNav-------------------------------------------------------->
+        <nav class="leftNav">
+          <router-link to="/subject"><a href="#about">Subject</a></router-link>
+          <router-link to="/study"><a href="#services">Study</a></router-link>
+          <router-link to="/university">
+            <a href="#clients">University</a>
+          </router-link>
+        </nav>
+        <!---LeftNav-------------------------------------------------------->
+      </div>
       <div class="col-8"></div>
       <div class="col-2">desno</div>
-    </div>
-    <!---LeftNav-------------------------------------------------------->
-
-    <div id="pages">
-      <router-link to="/study">Study</router-link>
-      |
-      <router-link to="/subject">Subject</router-link>
-      |
-      <router-link to="/university">University</router-link>
     </div>
     <router-view />
   </div>
@@ -298,6 +314,52 @@ export default {
 </script>
 
 <style lang="scss">
+.main {
+  margin-left: 220px;
+  font-size: 28px;
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .leftNav {
+    padding-top: 15px;
+  }
+  .leftNav a {
+    font-size: 18px;
+  }
+}
+
+.leftNav {
+  height: 100%;
+  width: 220px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #8763b5;
+  overflow-x: hidden;
+  padding-top: 25px;
+  text-align: left;
+}
+
+.leftNav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+  padding-top: 15px;
+}
+
+.leftNav a:hover {
+  color: #d1c1ed;
+}
+
+.btn {
+  border-radius: 30px;
+  background-color: #d1c1ed;
+  margin-left: 10px;
+}
 .topNav {
   background-color: #8763b5;
   height: 140px;
@@ -316,6 +378,7 @@ export default {
   padding: 10px;
   justify-content: center;
   text-align: center;
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.25));
 }
 //---ikone------------------------//
 .accountIcon {
@@ -327,6 +390,7 @@ export default {
 
 .bi-plus-circle-fill {
   color: #16c937;
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.25));
 }
 .bi-filter-square {
   color: white;
@@ -352,7 +416,11 @@ export default {
 }
 .dropdown-menu {
   border-radius: 30px;
+  height: 91px;
+  border: 3px solid;
+  border-color: #8763b5;
   background-color: #d1c1ed;
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.25));
 }
 .dropdown-item {
   border-radius: 30px;
@@ -378,5 +446,8 @@ body {
       color: #42b983;
     }
   }
+}
+h1 {
+  white-space: nowrap;
 }
 </style>
