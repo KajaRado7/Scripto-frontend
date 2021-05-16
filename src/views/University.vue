@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="container">
     <br />
     <h3>University content</h3>
   </div>
