@@ -1,6 +1,12 @@
 <template>
-  <div class="container">
-    <br />
-    <h3>Add Script content</h3>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8" style="text-align:justify;">
+      <br />
+      <p>
+        Add Script content
+      </p>
+    </div>
+    <div class="col-2"></div>
   </div>
 </template>

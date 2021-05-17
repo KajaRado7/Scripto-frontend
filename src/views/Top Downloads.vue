@@ -1,6 +1,12 @@
 <template>
-  <div class="container">
-    <br />
-    <h3>Top Downloads content</h3>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8" style="text-align:justify;">
+      <br />
+      <p>
+        Top Downloads Content
+      </p>
+    </div>
+    <div class="col-2"></div>
   </div>
 </template>

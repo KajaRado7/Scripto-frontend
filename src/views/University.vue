@@ -1,6 +1,9 @@
 <template>
-  <div class="container">
-    <br />
-    <h3>University content</h3>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8" style="text-align:justify;">
+      <br />
+    </div>
+    <div class="col-2"></div>
   </div>
 </template>
