@@ -69,7 +69,7 @@
               placeholder="Search"
               aria-label="Search"
             />
-            <button class="btn" type="submit">
+            <button class="btn btnSearch" type="submit">
               Search
             </button>
           </form>
@@ -282,7 +282,7 @@
     <!---HeadingNav----------------------------------------------------->
 
     <div class="row ">
-      <div class="col-2">
+      <div class="col-2 leftNav">
         <!---LeftNav-------------------------------------------------------->
         <nav class="leftNav">
           <router-link to="/subject">
@@ -403,7 +403,7 @@ export default {
   color: #d1c1ed;
 }
 
-.btn {
+.btnSearch {
   border-radius: 30px;
   background-color: #d1c1ed;
   margin-left: 10px;
