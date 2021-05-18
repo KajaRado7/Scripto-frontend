@@ -403,7 +403,7 @@ export default {
 }
 
 .leftNav a {
-  padding: 6px 8px 6px 16px;
+  padding: 8px 8px 10px 16px;
   text-decoration: none;
   font-size: 25px;
   color: white;
