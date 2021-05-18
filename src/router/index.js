@@ -48,10 +48,10 @@ const routes = [
       import(/* webpackChunkName: "about" */ '../views/Study.vue'),
   },
   {
-    path: '/subject',
-    name: 'Subject',
+    path: '/field',
+    name: 'Field',
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/Subject.vue'),
+      import(/* webpackChunkName: "about" */ '../views/Field.vue'),
   },
   {
     path: '/university',

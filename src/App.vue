@@ -254,9 +254,9 @@
         </h1>
         <h1
           class="col-4 d-flex justify-content-center"
-          v-if="checkRoute('Subject')"
+          v-if="checkRoute('Field')"
         >
-          Subject
+          Field
         </h1>
         <h1
           class="col-4 d-flex justify-content-center"
@@ -285,7 +285,7 @@
       <div class="col-2 leftNav">
         <!---LeftNav-------------------------------------------------------->
         <nav class="leftNav">
-          <router-link to="/subject">
+          <router-link to="/field">
             <a href="#subject" style="display:flex;align-items:center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
