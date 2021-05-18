@@ -70,13 +70,13 @@
 
       <div class="container3">
         <div class="item3">
-          <label for="subject">
-            Subject
+          <label for="field">
+            Field
             <span class="text-danger ml-1">*</span>
           </label>
           <br />
-          <select name="subjectSelect" class="select" id="subject-select">
-            <option disabled selected>- - Please choose a subject - -</option>
+          <select name="fieldSelect" class="select" id="field-select">
+            <option disabled selected>- - Please choose a field - -</option>
             <option value="Natural Sciences" class="selected">
               Natural Sciences
             </option>
