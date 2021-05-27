@@ -355,7 +355,11 @@
         </nav>
         <!---LeftNav-------------------------------------------------------->
       </div>
-      <div class="col-8"></div>
+      <div class="col-8">
+        <router-link to="/signup">signup</router-link>
+        |
+        <router-link to="/login">login</router-link>
+      </div>
       <div class="col-2"></div>
     </div>
     <router-view />
