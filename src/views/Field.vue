@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-2"></div>
-    <div class="col-8" style="text-align:justify;">
+    <div class="col-8 mainContent" style="text-align:justify;">
       <br />
       <br />
       <div class="buttonContainer1">
@@ -112,6 +112,10 @@
 </template>
 
 <style scoped>
+.mainContent {
+  margin-top: 180px;
+  margin-left: 100px;
+}
 .item1 {
   order: 3;
   flex-grow: 2;

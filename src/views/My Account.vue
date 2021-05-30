@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-2"></div>
-    <div class="col-8" style="text-align:justify;max-width: 500px;">
+    <div class="col-8 mainContent" style="text-align:justify;max-width: 500px;">
       <br />
       <br />
       <div id="myAccount">
@@ -28,6 +28,14 @@
 </template>
 
 <style scoped>
+.mainContent {
+  margin: 0;
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
 label {
   font-size: 23px;
   padding-bottom: 10px;
