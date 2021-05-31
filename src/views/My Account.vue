@@ -2,8 +2,6 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 mainContent" style="text-align:justify;max-width: 500px;">
-      <br />
-      <br />
       <div id="myAccount">
         <label>Full name</label>
         <p></p>
@@ -33,6 +31,7 @@
   position: absolute;
   top: 34%;
   left: 50%;
+  margin-top: 20px;
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
@@ -45,6 +44,7 @@ hr {
   border-color: #8763b5;
 }
 .btnSSU {
+  padding: 10px 70px;
   border-radius: 60px;
   background-color: #d1c1ed;
   color: #8763b5;

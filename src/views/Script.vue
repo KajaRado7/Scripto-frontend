@@ -2,9 +2,6 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 mainContent" style="text-align:justify;">
-      <br />
-      <br />
-
       <div
         id="carouselExampleDark"
         class="carousel carousel-dark slide"
@@ -184,7 +181,7 @@
 
 <style scoped>
 .mainContent {
-  margin-top: 180px;
+  margin-top: 250px;
   margin-left: 100px;
 }
 .btn-outline-secondary {

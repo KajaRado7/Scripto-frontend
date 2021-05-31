@@ -2,9 +2,6 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 mainContent" style="text-align:justify;">
-      <br />
-      <br />
-
       <div class="containerCard">
         <router-link to="/script">
           <div class="card">
@@ -32,7 +29,7 @@ export default {
 
 <style scoped>
 .mainContent {
-  margin-top: 180px;
+  margin-top: 250px;
   margin-left: 100px;
 }
 hr {

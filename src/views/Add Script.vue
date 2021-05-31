@@ -2,9 +2,6 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 mainContent" style="text-align:justify;">
-      <br />
-      <br />
-
       <div class="container1">
         <!--Croppa(u doradi-->
         <div class="item1">
@@ -155,7 +152,7 @@
 </template>
 <style scoped>
 .mainContent {
-  margin-top: 180px;
+  margin-top: 250px;
   margin-left: 100px;
 }
 .inputPic {

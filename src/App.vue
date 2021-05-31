@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <!---TopNav--------------------------------------------------------->
-    <div id="topNav">
+    <div
+      v-if="this.$route.name !== 'Login' && this.$route.name !== 'Signup'"
+      id="topNav"
+    >
       <nav class="navbar navbar-expand-lg topNav">
         <div class="container-fluid">
           <button
@@ -204,7 +207,10 @@
     <!---TopNav--------------------------------------------------------->
 
     <!---HeadingNav----------------------------------------------------->
-    <nav class="headingNav">
+    <nav
+      v-if="this.$route.name !== 'Login' && this.$route.name !== 'Signup'"
+      class="headingNav"
+    >
       <span class="row mb-0">
         <div class="col-4 d-flex justify-content-center"></div>
         <h1
@@ -273,15 +279,23 @@
         >
           Top Downloads
         </h1>
+
+        <router-link to="/signup">signup</router-link>
+        |
+        <router-link to="/login">login</router-link>
+
         <div class="col-4 d-flex justify-content-center"></div>
       </span>
     </nav>
     <!---HeadingNav----------------------------------------------------->
 
     <div class="row ">
-      <div class="col-2 leftNav">
+      <div class="col-2">
         <!---LeftNav-------------------------------------------------------->
-        <nav class="leftNav">
+        <nav
+          v-if="this.$route.name !== 'Login' && this.$route.name !== 'Signup'"
+          class="leftNav"
+        >
           <router-link to="/field">
             <a href="#subject" style="display:flex;align-items:center">
               <svg
@@ -352,11 +366,7 @@
         </nav>
         <!---LeftNav-------------------------------------------------------->
       </div>
-      <div class="col-8">
-        <router-link to="/signup">signup</router-link>
-        |
-        <router-link to="/login">login</router-link>
-      </div>
+      <div class="col-8"></div>
       <div class="col-2"></div>
     </div>
     <router-view />

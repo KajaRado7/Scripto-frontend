@@ -2,8 +2,6 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 mainContent" style="text-align:justify;">
-      <br />
-      <br />
       <div class="buttonContainer">
         <div class="item">
           <button type="button" class="btn  btnSSU">
@@ -23,7 +21,7 @@
 
 <style scoped>
 .mainContent {
-  margin-top: 180px;
+  margin-top: 250px;
   margin-left: 100px;
 }
 .item {
