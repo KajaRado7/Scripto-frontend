@@ -8,61 +8,63 @@
         class="d-inline-block logo2"
         loading="lazy"
       />
+      <div id="container1">
+        <div class="inputContainer1">
+          <div class="item">
+            <label for="email">
+              Email
+              <span class="text-danger ml-1">*</span>
+            </label>
+            <br />
+            <input
+              type="text"
+              maxlength="50"
+              name="email"
+              class="form-control"
+              id="email"
+              placeholder="e.g. horvat123@gmail.com"
+            />
+          </div>
+        </div>
 
-      <div class="inputContainer1">
-        <div class="item">
-          <label for="email">
-            Email
-            <span class="text-danger ml-1">*</span>
-          </label>
-          <br />
-          <input
-            type="text"
-            maxlength="50"
-            name="email"
-            class="form-control"
-            id="email"
-            placeholder="e.g. horvat123@gmail.com"
-          />
+        <div class="inputContainer2">
+          <div class="item">
+            <label for="pass">
+              Password
+              <span class="text-danger ml-1">*</span>
+            </label>
+            <br />
+            <input
+              type="password"
+              maxlength="50"
+              name="pass"
+              class="form-control"
+              id="pass"
+              placeholder="Password"
+            />
+          </div>
         </div>
       </div>
-
-      <div class="inputContainer2">
-        <div class="item">
-          <label for="pass">
-            Password
-            <span class="text-danger ml-1">*</span>
-          </label>
-          <br />
-          <input
-            type="password"
-            maxlength="50"
-            name="pass"
-            class="form-control"
-            id="pass"
-            placeholder="Password"
-          />
-        </div>
-      </div>
-      <div class="text-center">
+      <div id="container2">
         <button type="button" class="btn btn-lg btnLogin">
           <h4 class="btnText">Login</h4>
         </button>
+        <span class="signupRoute text-center">
+          <h5>
+            New User?
+            <router-link to="/signup">
+              <a href="#">
+                Signup
+              </a>
+            </router-link>
+          </h5>
+        </span>
       </div>
-      <span class="signupRoute text-center ">
-        <h5>
-          New User?
-          <router-link to="/signup">
-            <a href="#">
-              Signup
-            </a>
-          </router-link>
-        </h5>
-      </span>
     </div>
     <div class="col-2"></div>
   </div>
 </template>
+
 <style scoped>
 .btnLogin {
   margin-bottom: 30px;
@@ -77,10 +79,8 @@
   margin: 13px;
 }
 .item {
-  order: 1;
-  flex-grow: 1;
-  width: 100%;
-  margin: 5px;
+  width: 50%;
+  margin: auto;
 }
 .form-control {
   background: transparent;
@@ -90,24 +90,18 @@
   height: 70px;
   padding: 8px 20px;
 }
-
-.inputContainer1 {
-  max-width: 500px;
-  margin-top: 8rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
+#container1 {
+  margin-top: 90px;
+}
+#container2 {
+  position: absolute;
+  left: 50%;
+  bottom: -90%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 .inputContainer2 {
-  max-width: 500px;
   margin-top: 1rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
 }
 .logo2 {
   margin: 0;
