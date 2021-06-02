@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8 mainContent" style="text-align:justify;">
+    <div class="col-5"></div>
+    <div class="col-2 mainContent" style="text-align:justify;">
       <img
         src="@/assets/logo2.png"
         width="550"
@@ -61,7 +61,7 @@
         </span>
       </div>
     </div>
-    <div class="col-2"></div>
+    <div class="col-5"></div>
   </div>
 </template>
 
@@ -78,11 +78,9 @@
 .btnText {
   margin: 13px;
 }
-.item {
-  width: 50%;
-  margin: auto;
-}
 .form-control {
+  width: 100%;
+  margin: auto;
   background: transparent;
   border: 3px solid #8763b5;
   box-sizing: border-box;
