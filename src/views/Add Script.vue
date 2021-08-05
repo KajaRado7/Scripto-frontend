@@ -36,32 +36,12 @@
             <span class="text-danger ml-1">*</span>
           </label>
           <br />
-          <select name="universitySelect" class="select" id="university-select">
-            <option disabled selected>
-              - - Please choose an university - -
-            </option>
-            <option value="Juraj Dobrila University of Pula" class="selected">
-              Juraj Dobrila University of Pula
-            </option>
-            <option value="University of Rijeka" class="selected">
-              University of Rijeka
-            </option>
-            <option value="University of Dubrovnik" class="selected">
-              University of Dubrovnik
-            </option>
-            <option value="University of Spilt" class="selected">
-              University of Spilt
-            </option>
-            <option value="University of Osijek" class="selected">
-              University of Osijek
-            </option>
-            <option value="University of Zadar" class="selected">
-              University of Zadar
-            </option>
-            <option value="University of Zagreb" class="selected">
-              University of Zagreb
-            </option>
-          </select>
+          <b-form-select
+            v-model="add_script.university"
+            :options="university"
+            class="select"
+            id="university-select"
+          ></b-form-select>
         </div>
       </div>
 
@@ -72,39 +52,12 @@
             <span class="text-danger ml-1">*</span>
           </label>
           <br />
-          <select name="fieldSelect" class="select" id="field-select">
-            <option disabled selected>- - Please choose a field - -</option>
-            <option value="Natural Sciences" class="selected">
-              Natural Sciences
-            </option>
-            <option value="IT" class="selected">IT</option>
-            <option value="Economy/Culture & Tourism" class="selected">
-              Economy/Culture & Tourism
-            </option>
-            <option value="Languages" class="selected">Languages</option>
-            <option value="Educational Sciences" class="selected">
-              Educational Sciences
-            </option>
-            <option value="Philosophy" class="selected">Philosophy</option>
-            <option value="(Dental) Medicine" class="selected">
-              (Dental) Medicine
-            </option>
-            <option value="Music" class="selected">Music</option>
-            <option value="Technical St." class="selected">Tehnical St.</option>
-            <option value="Biotechnology" class="selected">
-              Biotechnology
-            </option>
-            <option value="Art" class="selected">Art</option>
-            <option value="Civil Engineering" class="selected">
-              Civil Engineering
-            </option>
-            <option value="Psychology" class="selected">Psychology</option>
-            <option value="Nursing" class="selected">Nursing</option>
-            <option value="Law" class="selected">Law</option>
-            <option value="Maritime St." class="selected">Maritime St.</option>
-            <option value="Theology" class="selected">Theology</option>
-            <option value="Kinesiology" class="selected">Kinesiology</option>
-          </select>
+          <b-form-select
+            v-model="add_script.field"
+            :options="field"
+            class="select"
+            id="university-select"
+          ></b-form-select>
         </div>
         <div class="item3">
           <label for="note">
@@ -112,6 +65,7 @@
           </label>
           <br />
           <input
+            v-model="add_script.note"
             type="text"
             maxlength="50"
             name="note"
@@ -131,17 +85,14 @@
           <br />
           <select name="studySelect" class="select" id="study-select">
             <option disabled selected>- - Please choose a study - -</option>
-            <option value="Graduate" class="selected">
-              Graduate
-            </option>
-            <option value="Undergraduate" class="selected">
-              Undergraduate
+            <option class="selected">
+              {{}}
             </option>
           </select>
         </div>
         <div class="item4">
           <br />
-          <button type="button" class="btn  btnSSU">
+          <button @click="publish" class="btn  btnSSU">
             <h4 class="btnText">Publish</h4>
           </button>
         </div>
@@ -150,6 +101,54 @@
     <div class="col-2"></div>
   </div>
 </template>
+
+<script>
+import { Service } from '@/service/service.js';
+
+export default {
+  data() {
+    return {
+      add_script: {
+        script_name: null,
+        field: null,
+        study: null,
+        university: null,
+        note: null,
+      },
+
+      university: [
+        { text: '-- Odaberite nesto --', value: null },
+        'Sveučilište Jurja Dobrile u Puli',
+        'Sveučilište u Splitu',
+        'Sveučilište u Splitu',
+        'Sveučilište u Splitu',
+        'Sveučilište u Splitu',
+      ],
+
+      field: [{ text: '-- Odaberite --', value: null }, 'IT', 'ART', 'LAW'],
+    };
+  },
+
+  methods: {
+    publish() {
+      let newAddScript = {
+        script_name: this.add_script.script_name,
+        field: this.add_script.field,
+        study: this.add_script.study,
+        university: this.add_script.university,
+        note: this.add_script.note,
+      };
+
+      console.log(newAddScript);
+
+      Service.post('/scripts', newAddScript).then((result) => {
+        console.log(result);
+      });
+    },
+  },
+};
+</script>
+
 <style scoped>
 .mainContent {
   margin-top: 250px;
