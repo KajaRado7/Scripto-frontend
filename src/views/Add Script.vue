@@ -9,7 +9,6 @@
             Script picture
             <span class="text-danger ml-1">*</span>
           </label>
-          <div class="inputPic"></div>
           <br />
         </div>
       </div>
@@ -22,6 +21,7 @@
           </label>
           <br />
           <input
+            v-model="add_script.script_name"
             type="text"
             maxlength="50"
             name="scriptName"
@@ -56,7 +56,7 @@
             v-model="add_script.field"
             :options="field"
             class="select"
-            id="university-select"
+            id="field-select"
           ></b-form-select>
         </div>
         <div class="item3">
@@ -83,12 +83,12 @@
             <span class="text-danger ml-1">*</span>
           </label>
           <br />
-          <select name="studySelect" class="select" id="study-select">
-            <option disabled selected>- - Please choose a study - -</option>
-            <option class="selected">
-              {{}}
-            </option>
-          </select>
+          <b-form-select
+            v-model="add_script.study"
+            :options="study"
+            class="select"
+            id="study-select"
+          ></b-form-select>
         </div>
         <div class="item4">
           <br />
@@ -115,17 +115,44 @@ export default {
         university: null,
         note: null,
       },
-
-      university: [
-        { text: '-- Odaberite nesto --', value: null },
-        'Sveučilište Jurja Dobrile u Puli',
-        'Sveučilište u Splitu',
-        'Sveučilište u Splitu',
-        'Sveučilište u Splitu',
-        'Sveučilište u Splitu',
+      study: [
+        { text: '- - Please choose a study - -', value: null },
+        'Graduate',
+        'Undergraduate',
       ],
 
-      field: [{ text: '-- Odaberite --', value: null }, 'IT', 'ART', 'LAW'],
+      university: [
+        { text: '- - Please choose an university - -', value: null },
+        'Juraj Dobrila University of Pula',
+        'University of Rijeka',
+        'University of Dubrovnik',
+        'University of Split',
+        'University of Osijek',
+        'University of Zadar',
+        'University of Zagreb',
+      ],
+
+      field: [
+        { text: '- - Please choose a field - -', value: null },
+        'Natural Sciences',
+        'IT',
+        'Economy/Culture & Tourism',
+        'Languages',
+        'Educational Sciences',
+        'Philosophy',
+        '(Dental)Medicine',
+        'Music',
+        'Technical St.',
+        'Biotechnology',
+        'Art',
+        'Civil Engineering',
+        'Psychology',
+        'Nursing',
+        'Law',
+        'Maritime St.',
+        'Theology',
+        'Kinesiology',
+      ],
     };
   },
 
@@ -153,13 +180,6 @@ export default {
 .mainContent {
   margin-top: 250px;
   margin-left: 100px;
-}
-.inputPic {
-  height: 150px;
-  background: #d1c1ed6b;
-  border: 3px solid #8763b5;
-  box-sizing: border-box;
-  border-radius: 39px;
 }
 
 .select {

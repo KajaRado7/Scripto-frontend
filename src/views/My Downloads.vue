@@ -7,7 +7,7 @@
           <div class="card">
             <img class="card-img-top" src="@/assets/script1.jpg" />
             <div class="card-body">
-              <p class="card-text" value="naslov">step by step - mat. zadaci</p>
+              <p class="card-text" value="naslov"></p>
               <br />
               <hr />
             </div>

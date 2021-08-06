@@ -2,78 +2,19 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 mainContent" style="text-align:justify;">
-      <div
-        id="carouselExampleDark"
-        class="carousel carousel-dark slide"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleDark"
-            data-bs-slide-to="0"
-            class="active slide"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleDark"
-            class="slide"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleDark"
-            class="slide"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="10000">
-            <img src="@/assets/script1.jpg" class="d-block w-100" />
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="@/assets/script2.png" class="d-block w-100" />
-          </div>
-          <div class="carousel-item">
-            <img src="@/assets/script3.png" class="d-block w-100" />
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleDark"
-          data-bs-slide="prev"
-        >
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleDark"
-          data-bs-slide="next"
-        >
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-
+      <h2>*mjesto za sliku*</h2>
       <div class="container2">
         <!--two--->
         <div class="item2">
           <label for="scriptName">
             Script name :
           </label>
-          <p>step by step - mat. zadaci</p>
           <hr />
         </div>
         <div class="item2">
           <label for="university">
             University :
           </label>
-          <p>Juraj Dobrila University of Pula</p>
           <hr />
         </div>
       </div>
@@ -84,15 +25,12 @@
           <label for="field">
             Field :
           </label>
-          <p>Natural Sciences</p>
           <hr />
         </div>
         <div class="item3">
           <label for="note">
             Note :
           </label>
-          <p>Sretno sa učenjem! :)</p>
-
           <hr />
         </div>
       </div>
@@ -103,30 +41,17 @@
           <label for="study">
             Study :
           </label>
-          <p>Undergraduate</p>
           <hr />
         </div>
         <div class="item4">
-          <select name="rateScript" class="select" id="rating-select">
-            <option disabled selected>
-              ★ Rate this script ★
-            </option>
-            <option value="1" class="selected">
-              1
-            </option>
-            <option value="2" class="selected">
-              2
-            </option>
-            <option value="3" class="selected">
-              3
-            </option>
-            <option value="4" class="selected">
-              4
-            </option>
-            <option value="5" class="selected">
-              5
-            </option>
-          </select>
+          <label for="download" class="download">
+            Rate it :
+          </label>
+          <b-form-select
+            :options="rate"
+            class="select"
+            id="rate-script"
+          ></b-form-select>
         </div>
         <div class="item4">
           <label for="download" class="download">
@@ -178,7 +103,15 @@
     <footer id="footer"></footer>
   </div>
 </template>
-
+<script>
+export default {
+  data() {
+    return {
+      rate: [1, 2, 3, 4, 5],
+    };
+  },
+};
+</script>
 <style scoped>
 .mainContent {
   margin-top: 250px;
