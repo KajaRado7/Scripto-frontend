@@ -5,11 +5,36 @@
       <div class="container1">
         <!--Croppa(u doradi-->
         <div class="item1">
-          <label for="scriptPic">
+          <label for="scriptPicture">
             Script picture
             <span class="text-danger ml-1">*</span>
           </label>
           <br />
+          <input
+            v-model="add_script.script_picture"
+            type="text"
+            maxlength="50"
+            name="scriptPicture"
+            class="form-control"
+            id="scriptPicture"
+            placeholder="picture url"
+          />
+        </div>
+        <div class="item1">
+          <label for="scriptRating">
+            Rating
+            <span class="text-danger ml-1">*</span>
+          </label>
+          <br />
+          <input
+            v-model="add_script.script_rating"
+            type="text"
+            maxlength="50"
+            name="scriptRating"
+            class="form-control"
+            id="scriptRating"
+            placeholder="rate your script (1-5)"
+          />
         </div>
       </div>
 
@@ -109,10 +134,12 @@ export default {
   data() {
     return {
       add_script: {
+        script_picture: null,
         script_name: null,
         field: null,
         study: null,
         university: null,
+        script_rating: null,
         note: null,
       },
       study: [
@@ -159,10 +186,12 @@ export default {
   methods: {
     publish() {
       let newAddScript = {
+        script_picture: this.add_script.script_picture,
         script_name: this.add_script.script_name,
         field: this.add_script.field,
         study: this.add_script.study,
         university: this.add_script.university,
+        script_rating: this.add_script.script_rating,
         note: this.add_script.note,
       };
 

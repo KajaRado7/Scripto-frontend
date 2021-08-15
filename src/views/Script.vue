@@ -2,18 +2,26 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 mainContent" style="text-align:justify;">
-      <h2>*mjesto za sliku*</h2>
+      <div class="container1">
+        <!--two--->
+        <div class="item1">
+          <label for="scriptPicture">
+            <h4>Script picture :</h4>
+          </label>
+        </div>
+      </div>
+
       <div class="container2">
         <!--two--->
         <div class="item2">
           <label for="scriptName">
-            Script name :
+            <h4>Script name :</h4>
           </label>
           <hr />
         </div>
         <div class="item2">
           <label for="university">
-            University :
+            <h4>University :</h4>
           </label>
           <hr />
         </div>
@@ -23,13 +31,13 @@
         <!--three--->
         <div class="item3">
           <label for="field">
-            Field :
+            <h4>Field :</h4>
           </label>
           <hr />
         </div>
         <div class="item3">
           <label for="note">
-            Note :
+            <h4>Note :</h4>
           </label>
           <hr />
         </div>
@@ -39,23 +47,19 @@
         <!--Comments--->
         <div class="item4">
           <label for="study">
-            Study :
+            <h4>Study :</h4>
+          </label>
+          <hr />
+        </div>
+        <div class="item4">
+          <label for="study">
+            <h4>Rate :</h4>
           </label>
           <hr />
         </div>
         <div class="item4">
           <label for="download" class="download">
-            Rate it :
-          </label>
-          <b-form-select
-            :options="rate"
-            class="select"
-            id="rate-script"
-          ></b-form-select>
-        </div>
-        <div class="item4">
-          <label for="download" class="download">
-            Download :
+            <h4>Download :</h4>
           </label>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +82,7 @@
         <!--three--->
         <div class="item5">
           <label for="comment">
-            Comment :
+            <h4>Comments :</h4>
           </label>
           <div class="input-group mb-3">
             <input
@@ -106,9 +110,7 @@
 <script>
 export default {
   data() {
-    return {
-      rate: [1, 2, 3, 4, 5],
-    };
+    return {};
   },
 };
 </script>
