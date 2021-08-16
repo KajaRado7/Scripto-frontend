@@ -94,7 +94,7 @@
 #container2 {
   position: absolute;
   left: 50%;
-  bottom: -90%;
+  bottom: -83%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }

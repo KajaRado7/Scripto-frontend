@@ -3,7 +3,7 @@
     <div class="col-2"></div>
     <div class="col-8 mainContent" style="text-align:justify;max-width: 500px;">
       <div id="myAccount">
-        <label>Full name</label>
+        <label>Username</label>
         <p></p>
         <hr />
         <label>E-mail</label>
@@ -12,7 +12,6 @@
         <label>Password</label>
         <p></p>
         <hr />
-
         <br />
         <div class="col-lg-12 col-md-12 text-center">
           <button type="button" class="btn btn-lg btnSSU">

@@ -11,18 +11,18 @@
       <div id="container1">
         <div class="inputContainer1">
           <div class="item">
-            <label for="fullName">
-              Full name
+            <label for="username">
+              Username
               <span class="text-danger ml-1">*</span>
             </label>
             <br />
             <input
               type="text"
               maxlength="50"
-              name="fullName"
+              name="username"
               class="form-control"
-              id="fullName"
-              placeholder="e.g. Ivan Horvat"
+              id="username"
+              placeholder="e.g. Ivan7x"
             />
           </div>
         </div>
@@ -59,24 +59,6 @@
               class="form-control"
               id="pass"
               placeholder="Password"
-            />
-          </div>
-        </div>
-
-        <div class="inputContainer4">
-          <div class="item">
-            <label for="repPass">
-              Repeat password
-              <span class="text-danger ml-1">*</span>
-            </label>
-            <br />
-            <input
-              type="password"
-              maxlength="50"
-              name="repPass"
-              class="form-control"
-              id="repPass"
-              placeholder="Repeat password"
             />
           </div>
         </div>
@@ -126,18 +108,16 @@
 }
 #container1 {
   margin-top: 90px;
+  margin-bottom: 50px;
 }
 #container2 {
-  align-items: center;
   position: absolute;
   left: 50%;
   bottom: -50%;
-  margin-right: -50%;
   transform: translate(-50%, -50%);
 }
 .inputContainer2,
-.inputContainer3,
-.inputContainer4 {
+.inputContainer3 {
   margin-top: 1rem;
 }
 .logo2 {
