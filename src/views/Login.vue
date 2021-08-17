@@ -11,18 +11,18 @@
       <div id="container1">
         <div class="inputContainer1">
           <div class="item">
-            <label for="email">
-              Email
+            <label for="username">
+              Username
               <span class="text-danger ml-1">*</span>
             </label>
             <br />
             <input
               type="text"
               maxlength="50"
-              name="email"
+              name="username"
               class="form-control"
-              id="email"
-              placeholder="e.g. horvat123@gmail.com"
+              id="username"
+              placeholder="e.g. Ivan7x"
             />
           </div>
         </div>
