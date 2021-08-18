@@ -128,7 +128,7 @@
 </template>
 
 <script>
-import { Service } from '@/service/service.js';
+import { Service } from '@/services/index.js';
 
 export default {
   data() {

@@ -249,10 +249,6 @@
           Top Downloads
         </h1>
 
-        <router-link to="/signup">signup</router-link>
-        |
-        <router-link to="/login">login</router-link>
-
         <div class="col-4 d-flex justify-content-center"></div>
       </span>
     </nav>
@@ -353,6 +349,7 @@ export default {
       else return false;
     },
   },
+  mounted() {},
 };
 </script>
 

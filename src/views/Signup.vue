@@ -8,76 +8,78 @@
         class="d-inline-block logo2"
         loading="lazy"
       />
-      <div id="container1">
-        <div class="inputContainer1">
-          <div class="item">
-            <label for="username">
-              Username
-              <span class="text-danger ml-1">*</span>
-            </label>
-            <br />
-            <input
-              type="text"
-              maxlength="50"
-              name="username"
-              class="form-control"
-              id="username"
-              placeholder="e.g. Ivan7x"
-            />
+      <form @submit.prevent="signup">
+        <div id="container1">
+          <div class="inputContainer1">
+            <div class="item">
+              <label for="username">
+                Username
+                <span class="text-danger ml-1">*</span>
+              </label>
+              <br />
+              <input
+                type="text"
+                maxlength="50"
+                name="username"
+                class="form-control"
+                id="username"
+                placeholder="e.g. Ivan7x"
+              />
+            </div>
           </div>
-        </div>
 
-        <div class="inputContainer2">
-          <div class="item">
-            <label for="email">
-              Email
-              <span class="text-danger ml-1">*</span>
-            </label>
-            <br />
-            <input
-              type="text"
-              maxlength="50"
-              name="email"
-              class="form-control"
-              id="email"
-              placeholder="e.g. horvat123@gmail.com"
-            />
+          <div class="inputContainer2">
+            <div class="item">
+              <label for="email">
+                Email
+                <span class="text-danger ml-1">*</span>
+              </label>
+              <br />
+              <input
+                type="text"
+                maxlength="50"
+                name="email"
+                class="form-control"
+                id="email"
+                placeholder="e.g. horvat123@gmail.com"
+              />
+            </div>
           </div>
-        </div>
 
-        <div class="inputContainer3">
-          <div class="item">
-            <label for="pass">
-              Password
-              <span class="text-danger ml-1">*</span>
-            </label>
-            <br />
-            <input
-              type="password"
-              maxlength="50"
-              name="pass"
-              class="form-control"
-              id="pass"
-              placeholder="Password"
-            />
+          <div class="inputContainer3">
+            <div class="item">
+              <label for="pass">
+                Password
+                <span class="text-danger ml-1">*</span>
+              </label>
+              <br />
+              <input
+                type="password"
+                maxlength="50"
+                name="pass"
+                class="form-control"
+                id="pass"
+                placeholder="Password"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div id="container2">
-        <button type="button" class="btn btn-lg btnSignup">
-          <h4 class="btnText">Signup</h4>
-        </button>
-        <span class="loginRoute text-center ">
-          <h5>
-            Already have an account?
-            <router-link to="/login">
-              <a href="#">
-                Login
-              </a>
-            </router-link>
-          </h5>
-        </span>
-      </div>
+        <div id="container2">
+          <button type="submit" class="btn btn-lg btnSignup">
+            <h4 class="btnText">Signup</h4>
+          </button>
+          <span class="loginRoute text-center ">
+            <h5>
+              Already have an account?
+              <router-link to="/login">
+                <a href="#">
+                  Login
+                </a>
+              </router-link>
+            </h5>
+          </span>
+        </div>
+      </form>
     </div>
     <div class="col-5"></div>
   </div>

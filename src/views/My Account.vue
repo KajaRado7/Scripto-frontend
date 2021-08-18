@@ -4,17 +4,22 @@
     <div class="col-8 mainContent" style="text-align:justify;max-width: 500px;">
       <div id="myAccount">
         <label>Username</label>
-        <p></p>
+        <p>
+          <b>{{ auth.username }}</b>
+        </p>
         <hr />
         <label>E-mail</label>
-        <p></p>
+        <p><b></b></p>
         <hr />
         <label>Password</label>
-        <p></p>
+        <p>
+          <b></b>
+        </p>
         <hr />
         <br />
         <div class="col-lg-12 col-md-12 text-center">
-          <button type="button" class="btn btn-lg btnSSU">
+          <!--pozivamo funk. za logout-->
+          <button @click="logout()" class="btn btn-lg btnSSU">
             <h4 class="btnText">Logout</h4>
           </button>
         </div>
@@ -24,7 +29,30 @@
   </div>
 </template>
 
+<script>
+import { Auth } from '@/services';
+
+export default {
+  data() {
+    return {
+      // pozivanje podataka
+      auth: Auth.state,
+    };
+  },
+  methods: {
+    logout() {
+      Auth.logout();
+      // refresh trenutne stranice
+      this.$router.go();
+    },
+  },
+};
+</script>
+
 <style scoped>
+p {
+  color: #8763b5;
+}
 .mainContent {
   margin: 0;
   position: absolute;

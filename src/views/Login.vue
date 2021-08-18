@@ -8,62 +8,89 @@
         class="d-inline-block logo2"
         loading="lazy"
       />
-      <div id="container1">
-        <div class="inputContainer1">
-          <div class="item">
-            <label for="username">
-              Username
-              <span class="text-danger ml-1">*</span>
-            </label>
-            <br />
-            <input
-              type="text"
-              maxlength="50"
-              name="username"
-              class="form-control"
-              id="username"
-              placeholder="e.g. Ivan7x"
-            />
+      <form @submit.prevent="login">
+        <div id="container1">
+          <div class="inputContainer1">
+            <div class="item">
+              <label for="username">
+                Username
+                <span class="text-danger ml-1">*</span>
+              </label>
+              <br />
+              <input
+                v-model="username"
+                type="text"
+                maxlength="50"
+                name="username"
+                class="form-control"
+                id="username"
+                placeholder="e.g. Ivan7x"
+              />
+            </div>
           </div>
-        </div>
 
-        <div class="inputContainer2">
-          <div class="item">
-            <label for="pass">
-              Password
-              <span class="text-danger ml-1">*</span>
-            </label>
-            <br />
-            <input
-              type="password"
-              maxlength="50"
-              name="pass"
-              class="form-control"
-              id="pass"
-              placeholder="Password"
-            />
+          <div class="inputContainer2">
+            <div class="item">
+              <label for="pass">
+                Password
+                <span class="text-danger ml-1">*</span>
+              </label>
+              <br />
+              <input
+                v-model="password"
+                type="password"
+                maxlength="50"
+                name="pass"
+                class="form-control"
+                id="pass"
+                placeholder="Password"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div id="container2">
-        <button type="button" class="btn btn-lg btnLogin">
-          <h4 class="btnText">Login</h4>
-        </button>
-        <span class="signupRoute text-center">
-          <h5>
-            New User?
-            <router-link to="/signup">
-              <a href="#">
-                Signup
-              </a>
-            </router-link>
-          </h5>
-        </span>
-      </div>
+        <div id="container2">
+          <button type="submit" class="btn btn-lg btnLogin">
+            <h4 class="btnText">Login</h4>
+          </button>
+          <span class="signupRoute text-center">
+            <h5>
+              New User?
+              <router-link to="/signup">
+                <a href="#">
+                  Signup
+                </a>
+              </router-link>
+            </h5>
+          </span>
+        </div>
+      </form>
     </div>
     <div class="col-5"></div>
   </div>
 </template>
+<script>
+import { Auth } from '@/services';
+
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+    };
+  },
+  methods: {
+    async login() {
+      let success = await Auth.login(this.username, this.password);
+      console.log('Result of Login: ', success);
+
+      // redirect na home page ako je login uspješan
+      if (success == true) {
+        this.$router.push({ name: 'Home' });
+      }
+    },
+  },
+};
+</script>
 
 <style scoped>
 .btnLogin {

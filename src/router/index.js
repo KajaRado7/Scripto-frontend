@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import 'bootstrap';
+import { Auth } from '@/services';
 
 Vue.use(VueRouter);
 
@@ -89,6 +90,23 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+//INTERCEPTORI
+// prije svakog prijelaza na drugu stranicu izvrši ovu funk
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/login', '/signup']; // stranice dostupne svima
+  // login je potreban kada str. ,na koju želimo doći, ne pripada publicPages
+  const loginNeeded = !publicPages.includes(to.path);
+  // provjera da li korisnik postoji
+  const user = Auth.getUser();
+
+  // provjera ako korisnika nema prilikom prijave
+  if (loginNeeded && !user) {
+    next('/login');
+    return;
+  }
+  next();
 });
 
 export default router;
