@@ -8,7 +8,7 @@
         class="d-inline-block logo2"
         loading="lazy"
       />
-      <form @submit.prevent="signup">
+      <form novalidate @submit.prevent="signup">
         <div id="container1">
           <div class="inputContainer1">
             <div class="item">
@@ -18,13 +18,23 @@
               </label>
               <br />
               <input
+                v-model="username"
                 type="text"
-                maxlength="50"
                 name="username"
                 class="form-control"
                 id="username"
                 placeholder="e.g. Ivan7x"
+                required
+                invalidFeedback="Please enter your username"
               />
+            </div>
+            <div
+              class="alert"
+              v-if="!$v.username.minLength || !$v.username.containsUppercase"
+            >
+              Username must have
+              {{ $v.username.$params.minLength.min }} characters and
+              {{ $v.username.$params.containsUppercase.min }} upper case letter!
             </div>
           </div>
 
@@ -36,12 +46,14 @@
               </label>
               <br />
               <input
+                v-model="email"
                 type="text"
-                maxlength="50"
                 name="email"
                 class="form-control"
                 id="email"
                 placeholder="e.g. horvat123@gmail.com"
+                required
+                invalidFeedback="Please enter your e-mail"
               />
             </div>
           </div>
@@ -54,13 +66,20 @@
               </label>
               <br />
               <input
+                v-model="password"
                 type="password"
-                maxlength="50"
                 name="pass"
                 class="form-control"
                 id="pass"
                 placeholder="Password"
+                required
+                invalidFeedback="Please enter your password"
               />
+            </div>
+            <div class="alert" v-if="!$v.password.minLength">
+              Password must have
+              {{ $v.password.$params.minLength.min }} characters and at least
+              one upper case letter!
             </div>
           </div>
         </div>
@@ -85,7 +104,82 @@
   </div>
 </template>
 
+<script>
+import { Auth } from '@/services';
+import { required, minLength } from 'vuelidate/lib/validators'; // Vuelidate validators
+
+export default {
+  data() {
+    return {
+      username: '',
+      email: '',
+      password: '',
+      message: ' ',
+    };
+  },
+  // pravila prilikom registracije
+  validations: {
+    username: {
+      required,
+      minLength: minLength(5),
+      containsUppercase(a) {
+        const upper_case = /[A-Z]/.test(a);
+        return upper_case;
+      },
+    },
+    password: {
+      required,
+      minLength: minLength(7),
+    },
+  },
+  methods: {
+    async signup(action) {
+      if (this.username == '' || this.email == '' || this.password == '') {
+        return action.target.classList.add('was-validated');
+      }
+      // provjera za username--------------------//
+      if (
+        this.$v.username.minLength == false ||
+        this.$v.username.containsUppercase == false
+      ) {
+        return (this.message = 'Username is invalid!');
+      }
+      // provjera za pass------------------------//
+      if (this.$v.password.minLength == false) {
+        return (this.message = 'Password is invalid!');
+      }
+      // spremanje podataka jer je registracija prošla uspješno
+      try {
+        let success = await Auth.signup(
+          this.username,
+          this.email,
+          this.password
+        );
+        if (
+          (success == true &&
+            this.$v.password.minLength == true &&
+            this.$v.username.minLength == true &&
+            this.$v.username.containsUppercase == true) ||
+          this.username !== '' ||
+          this.email !== '' ||
+          this.password !== ''
+        ) {
+          console.log(
+            'Success, you have registered to Scripto!:) Result of registration: ',
+            success
+          );
+          this.$router.push({ name: 'Login' });
+        }
+      } catch (e) {}
+    },
+  },
+};
+</script>
+
 <style scoped>
+.alert {
+  color: red;
+}
 .btnSignup {
   margin-bottom: 30px;
   margin-top: 35px;

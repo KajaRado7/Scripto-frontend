@@ -1,7 +1,7 @@
 import axios from 'axios'; // nema def.putanje jer nije dio naseg lokalnog projekta
 import $router from '@/router';
 
-// vezan uz konkretni backend(poziva ga)
+// vezan uz konkretni backend(poziva ga)-----------------------------------------//
 let Service = axios.create({
   baseURL: 'http://localhost:3000',
   timeout: 3000, // 3 sekunde
@@ -16,11 +16,10 @@ let Service = axios.create({
 Service.interceptors.request.use((request) => {
   let token = Auth.getToken();
   // ako token ne postoji preusmjeri korisnika na login
-  if (!token) {
-    $router.go();
-    return;
-  } else {
-    request.headers['Authorization'] = 'Bearer' + token;
+  try {
+    request.headers['Authorization'] = 'Bearer ' + token;
+  } catch (e) {
+    console.error(e);
   }
   return request;
 });
@@ -35,9 +34,21 @@ Service.interceptors.response.use(
   }
 );
 
-// objekt sa metodama za provjeravanje tokena
-// poziva se kada stisnemo Login button
+// objekt sa metodama za provjeravanje tokena-------------------------------------//
 let Auth = {
+  // SIGNUP
+  async signup(username, email, password) {
+    let response = await Service.post('/users', {
+      username: username,
+      email: email,
+      password: password,
+    });
+    // kada se response vrati sa backend-a ima neke podatke
+    let user = response.data;
+    localStorage.setItem('user', JSON.stringify(user));
+
+    return true;
+  },
   // LOGIN
   async login(username, password) {
     let response = await Service.post('/auth', {
@@ -75,7 +86,7 @@ let Auth = {
     }
     return false;
   },
-  // korisno je za pozivanje preko triple dot operatora
+  // korisno je za pozivanje
   state: {
     get authenticated() {
       return Auth.authenticated();
@@ -87,13 +98,13 @@ let Auth = {
         return user.username;
       }
     },
-    /*get password() {
+    get email() {
       let user = Auth.getUser();
 
-      if (user) {
-        return user.password;
+      if (email) {
+        return user.email;
       }
-    },*/
+    },
   },
 };
 

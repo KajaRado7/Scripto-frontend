@@ -128,7 +128,7 @@
 </template>
 
 <script>
-import { Service } from '@/services/index.js';
+import { Service, Auth } from '@/services/index.js';
 
 export default {
   data() {
