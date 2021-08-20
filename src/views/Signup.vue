@@ -150,7 +150,7 @@ export default {
           this.email,
           this.password
         );
-        console.log('Result of registration: ', succes);
+        console.log('Result of registration: ', success);
         if (
           (success &&
             this.$v.password.minLength &&
@@ -163,7 +163,9 @@ export default {
           // preusmjeri korisnika na Login
           this.$router.push({ name: 'Login' });
         }
-      } catch {}
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
 };
