@@ -98,13 +98,6 @@ let Auth = {
         return user.username;
       }
     },
-    get email() {
-      let user = Auth.getUser();
-
-      if (email) {
-        return user.email;
-      }
-    },
   },
 };
 

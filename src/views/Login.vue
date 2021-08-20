@@ -8,7 +8,7 @@
         class="d-inline-block logo2"
         loading="lazy"
       />
-      <form @submit.prevent="login">
+      <form novalidate @submit.prevent="login">
         <div id="container1">
           <div class="inputContainer1">
             <div class="item">
@@ -45,6 +45,8 @@
                 id="pass"
                 placeholder="Password"
               />
+              <!--moguce greske-->
+              <p class="error">{{ error }}</p>
             </div>
           </div>
         </div>
@@ -76,16 +78,27 @@ export default {
     return {
       username: '',
       password: '',
+      error: '',
     };
   },
   methods: {
-    async login() {
-      let success = await Auth.login(this.username, this.password);
-      console.log('Result of Login: ', success);
-
-      // redirect na home page ako je login uspješan
-      if (success == true) {
-        this.$router.push({ name: 'Home' });
+    async login(event) {
+      if (this.username == '' || this.password == '') {
+        event.target.classList.add('was-validated');
+        return (this.error = 'Wrong username or password!');
+      }
+      this.error = '';
+      try {
+        // prijava je prošla uspješnp
+        let success = await Auth.login(this.username, this.password);
+        console.log('Result of login: ', success);
+        if ((success && this.username !== '') || this.password !== '') {
+          this.$router.replace({ path: '/' });
+          // refresh trenutne stranice
+          this.$router.go();
+        }
+      } catch (e) {
+        this.error = 'Wrong username or password!';
       }
     },
   },
@@ -93,6 +106,14 @@ export default {
 </script>
 
 <style scoped>
+.error {
+  margin-top: 10px;
+  color: red;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .btnLogin {
   margin-bottom: 30px;
   margin-top: 35px;

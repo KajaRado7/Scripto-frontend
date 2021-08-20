@@ -35,7 +35,6 @@
                       class="d-inline-block logo"
                       loading="lazy"
                     />
-                    <!--Logo------>
                   </a>
                 </router-link>
               </li>
@@ -57,7 +56,6 @@
                       d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"
                     />
                   </svg>
-                  <!--PlusIcon------>
                 </router-link>
               </li>
             </ul>
@@ -102,7 +100,6 @@
                       d="M6 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
                     />
                   </svg>
-                  <!--FilterIcon------>
                 </a>
                 <ul
                   class="dropdown-menu"
@@ -142,10 +139,15 @@
                         d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
                       />
                     </svg>
-                    <!--DownloadIcon------>
                   </a>
                 </router-link>
               </li>
+
+              <!--pozivamo funk. za logout-->
+              <button @click="logout()" class="btn btn-lg btnSSU">
+                <h5 class="btnText"><b>Logout</b></h5>
+              </button>
+
               <li class="nav-item rightIcons accountIcon">
                 <router-link to="/my_account">
                   <a class="nav-link" href="#">
@@ -164,8 +166,11 @@
                         d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
                       />
                     </svg>
-                    <!--AccountIcon------>
                   </a>
+                  <!--prikaz username-a od korisnika-->
+                  <span class="username">
+                    <b>{{ auth.username }}</b>
+                  </span>
                 </router-link>
               </li>
             </ul>
@@ -340,13 +345,25 @@
 
 <script>
 import router from '@/router';
+import { Auth } from '@/services';
 
 export default {
+  data() {
+    return {
+      // pozivanje podataka
+      auth: Auth.state,
+    };
+  },
   methods: {
     //promjena naziva stranice ovisno o ruti
     checkRoute(route) {
       if (this.$route.name == route) return true;
       else return false;
+    },
+    logout() {
+      Auth.logout();
+      // refresh trenutne stranice
+      this.$router.go();
     },
   },
   mounted() {},
@@ -354,6 +371,19 @@ export default {
 </script>
 
 <style lang="scss">
+.username {
+  color: white;
+}
+.btnSSU {
+  margin: 25px;
+  border-radius: 60px;
+  background-color: #d1c1ed;
+  color: #8763b5;
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.25));
+}
+.btnText {
+  margin: 3px;
+}
 .logoPlus {
   padding-right: 15px;
 }
@@ -469,11 +499,13 @@ export default {
   filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.25));
 }
 
-.bi-person-circle,
 .bi-download,
-.bi-filter-square {
+.bi-filter-square,
+.bi-person-circle {
   color: white;
+  margin-top: 8px;
 }
+
 //---ikone------------------------//
 
 body {

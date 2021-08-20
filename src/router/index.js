@@ -106,6 +106,7 @@ router.beforeEach((to, from, next) => {
     next('/login');
     return;
   }
+  // pokreće kod nakon što se izvrše sve middleware funk.
   next();
 });
 

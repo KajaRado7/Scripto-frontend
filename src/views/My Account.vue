@@ -4,28 +4,8 @@
     <div class="col-8 mainContent" style="text-align:justify;max-width: 500px;">
       <div id="myAccount">
         <div class="container">
-          <div class="item1">
-            <label>Username</label>
-            <p>
-              <b>{{ auth.username }}</b>
-            </p>
-            <hr />
-            <label>E-mail</label>
-            <p>
-              <b><!--{{ auth.email }}--></b>
-            </p>
-            <hr />
-            <br />
-            <div class="col-lg-12 col-md-12 text-center">
-              <!--pozivamo funk. za logout-->
-              <button @click="logout()" class="btn btn-lg btnSSU">
-                <h4 class="btnText">Logout</h4>
-              </button>
-            </div>
-          </div>
-
           <!--input fields trebaju ici ovdje-->
-          <div class="item2">
+          <div class="item">
             <label>Old Password</label>
 
             <hr />
@@ -57,13 +37,6 @@ export default {
       auth: Auth.state,
     };
   },
-  methods: {
-    logout() {
-      Auth.logout();
-      // refresh trenutne stranice
-      this.$router.go();
-    },
-  },
 };
 </script>
 
@@ -75,15 +48,11 @@ export default {
   justify-content: space-around;
   align-items: center;
 }
-.item2,
-.item1 {
-  order: 2;
-  flex-grow: 2;
+.item {
+  order: 1;
+  flex-grow: 1;
   width: 100%;
   margin: 2rem;
-}
-.item2 {
-  margin-top: 55px;
 }
 
 p {
@@ -108,13 +77,13 @@ hr {
   border-color: #8763b5;
 }
 .btnSSU {
-  padding: 10px 70px;
+  margin: 25px;
   border-radius: 60px;
   background-color: #d1c1ed;
   color: #8763b5;
   filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.25));
 }
 .btnText {
-  margin: 13px;
+  margin: 17px;
 }
 </style>

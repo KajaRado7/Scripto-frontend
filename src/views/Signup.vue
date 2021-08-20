@@ -28,13 +28,10 @@
                 invalidFeedback="Please enter your username"
               />
             </div>
-            <div
-              class="alert"
-              v-if="!$v.username.minLength || !$v.username.containsUppercase"
-            >
-              Username must have
-              {{ $v.username.$params.minLength.min }} characters and
-              {{ $v.username.$params.containsUppercase.min }} upper case letter!
+            <!--moguce greske-->
+            <p class="error">{{ error1 }}</p>
+            <div class="alert" v-if="!$v.username.containsUppercase">
+              Username must have at least one upper case letter!
             </div>
           </div>
 
@@ -76,10 +73,11 @@
                 invalidFeedback="Please enter your password"
               />
             </div>
+            <!--moguce greske-->
+            <p class="error">{{ error2 }}</p>
             <div class="alert" v-if="!$v.password.minLength">
               Password must have
-              {{ $v.password.$params.minLength.min }} characters and at least
-              one upper case letter!
+              {{ $v.password.$params.minLength.min }} characters!
             </div>
           </div>
         </div>
@@ -114,14 +112,14 @@ export default {
       username: '',
       email: '',
       password: '',
-      message: ' ',
+      error1: '',
+      error2: '',
     };
   },
-  // pravila prilikom registracije
+  // definiranje pravila potrebnih za registraciju
   validations: {
     username: {
       required,
-      minLength: minLength(5),
       containsUppercase(a) {
         const upper_case = /[A-Z]/.test(a);
         return upper_case;
@@ -133,20 +131,17 @@ export default {
     },
   },
   methods: {
-    async signup(action) {
+    async signup(event) {
       if (this.username == '' || this.email == '' || this.password == '') {
-        return action.target.classList.add('was-validated');
+        return event.target.classList.add('was-validated');
       }
       // provjera za username--------------------//
-      if (
-        this.$v.username.minLength == false ||
-        this.$v.username.containsUppercase == false
-      ) {
-        return (this.message = 'Username is invalid!');
+      if (!this.$v.username.containsUppercase) {
+        return (this.error1 = 'Username is invalid!');
       }
       // provjera za pass------------------------//
-      if (this.$v.password.minLength == false) {
-        return (this.message = 'Password is invalid!');
+      if (!this.$v.password.minLength) {
+        return (this.error2 = 'Password is invalid!');
       }
       // spremanje podataka jer je registracija prošla uspješno
       try {
@@ -155,22 +150,20 @@ export default {
           this.email,
           this.password
         );
+        console.log('Result of registration: ', succes);
         if (
-          (success == true &&
-            this.$v.password.minLength == true &&
-            this.$v.username.minLength == true &&
-            this.$v.username.containsUppercase == true) ||
+          (success &&
+            this.$v.password.minLength &&
+            this.$v.username.containsUppercase) ||
           this.username !== '' ||
           this.email !== '' ||
           this.password !== ''
         ) {
-          console.log(
-            'Success, you have registered to Scripto!:) Result of registration: ',
-            success
-          );
+          console.log('Success, you have registered to Scripto!:)');
+          // preusmjeri korisnika na Login
           this.$router.push({ name: 'Login' });
         }
-      } catch (e) {}
+      } catch {}
     },
   },
 };
@@ -178,7 +171,19 @@ export default {
 
 <style scoped>
 .alert {
+  margin-top: -23px;
+}
+.error {
+  margin-top: 10px;
+}
+
+.alert,
+.error {
   color: red;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .btnSignup {
   margin-bottom: 30px;
