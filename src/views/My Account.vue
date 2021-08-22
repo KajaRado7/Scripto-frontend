@@ -55,13 +55,12 @@
 </template>
 
 <script>
-import { Service, Auth } from '@/services';
+import { Auth } from '@/services';
 import { required, minLength } from 'vuelidate/lib/validators'; // Vuelidate validators
 
 export default {
   data() {
     return {
-      username: '',
       old_password: '',
       new_password: '',
       error: '',
@@ -77,13 +76,8 @@ export default {
       minLength: minLength(7),
     },
   },
-  created() {
-    this.callBackend();
-  },
+
   methods: {
-    async callBackend() {
-      this.username = await Auth.getOne(this.auth.username);
-    },
     // funk. za promijenu lozinke
     async changeUserPassword() {
       // moguće greške
@@ -97,7 +91,7 @@ export default {
       }
       // ako je sve prošlo uspješno:
       try {
-        let success = await Auth.changeUserPassword(
+        let success = await Auth.changePassword(
           this.old_password,
           this.new_password
         );
@@ -106,6 +100,7 @@ export default {
           this.$router.push({ path: '/login' });
         }
       } catch (e) {
+        console.log(e);
         this.error = 'You typed in wrong old password!';
       }
     },

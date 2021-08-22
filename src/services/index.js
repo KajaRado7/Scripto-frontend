@@ -61,6 +61,19 @@ let Auth = {
 
     return true;
   },
+  // PROMIJENA PASS-A
+  async changePassword(old_password, new_password) {
+    let response = await Service.patch('/users', {
+      old_password: old_password,
+      new_password: new_password,
+    });
+
+    let user = response.data;
+
+    localStorage.setItem('user', JSON.stringify(user));
+
+    return true;
+  },
   // LOGOUT
   logout() {
     localStorage.removeItem('user');
