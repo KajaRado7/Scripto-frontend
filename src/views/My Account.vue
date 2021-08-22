@@ -5,21 +5,48 @@
       <div id="myAccount">
         <div class="container">
           <!--input fields trebaju ici ovdje-->
-          <div class="item">
-            <label>Old Password</label>
+          <form novalidate @submit.prevent="changeUserPassword">
+            <div class="item">
+              <label>Old Password</label>
+              <br />
+              <input
+                v-model="old_password"
+                type="password"
+                name="old_password"
+                class="form-control"
+                id="old_password"
+                required
+                invalidFeedback="Please enter your correct old password"
+              />
+              <p class="error">{{ error }}</p>
 
-            <hr />
-            <label>New Password</label>
+              <label>New Password</label>
+              <br />
+              <input
+                v-model="new_password"
+                type="password"
+                name="new_password"
+                class="form-control"
+                id="new_password"
+                required
+                invalidFeedback="Please enter the correct password"
+              />
+              <p class="error1">{{ error1 }}</p>
+              <p class="error2">{{ error2 }}</p>
+              <p class="error3">{{ error3 }}</p>
+              <div class="alert" v-if="!$v.new_password.minLength">
+                Password must have
+                {{ $v.new_password.$params.minLength.min }} characters!
+              </div>
 
-            <hr />
-            <br />
-            <div class="col-lg-12 col-md-12 text-center">
-              <!--pozivamo funk. za izmjenu lozinke-->
-              <button class="btn btn-lg btnSSU">
-                <h4 class="btnText">Change Password</h4>
-              </button>
+              <div class="col-lg-12 col-md-12 text-center">
+                <!--pozivamo funk. za izmjenu lozinke-->
+                <button type="submit" class="btn btn-lg btnSSU">
+                  <h4 class="btnText">Change Password</h4>
+                </button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -28,20 +55,88 @@
 </template>
 
 <script>
-import { Auth } from '@/services';
+import { Service, Auth } from '@/services';
+import { required, minLength } from 'vuelidate/lib/validators'; // Vuelidate validators
 
 export default {
   data() {
     return {
-      // pozivanje podataka
-      auth: Auth.state,
+      old_password: '',
+      new_password: '',
+      error: '',
+      error1: '',
+      error2: '',
+      error3: '',
+      error4: '',
     };
+  }, // definiranje pravila potrebnih za kreiranje nove lozinke
+  validations: {
+    new_password: {
+      required,
+      minLength: minLength(7),
+    },
+  },
+  created() {
+    this.callBackend();
+  },
+  methods: {
+    async callBackend() {
+      this.username = await Auth.getOne(this.auth.username);
+    },
+    // funk. za promijenu lozinke
+    async changeUserPassword(event) {
+      // moguće greške
+      if (this.old_password == '' || this.new_password == '') {
+        event.target.classList.add('was-validated');
+        return (this.error1 = 'Please fill in all the input fields!');
+      } else if (this.old_password == this.new_password) {
+        return (this.error2 = 'Passwords must differ from each other!');
+      }
+      if (!this.$v.new_password.minLength) {
+        return (this.error4 = 'Password is invalid!');
+      }
+      // ako je sve prošlo uspješno:
+      try {
+        let success = await Auth.changeUserPassword(
+          this.old_password,
+          this.new_password
+        );
+        console.log('Result of changes: ', success);
+        if (success) {
+          this.$router.push({ path: '/login' });
+        }
+      } catch (e) {
+        this.error = 'You typed in wrong old password!';
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
+.form-control {
+  width: 100%;
+  margin: auto;
+  background: transparent;
+  border: 3px solid #8763b5;
+  box-sizing: border-box;
+  border-radius: 39px;
+  height: 70px;
+  padding: 8px 20px;
+}
+.error,
+.error1,
+.error2,
+.error3 {
+  margin-top: 10px;
+  color: red;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .container {
+  margin-top: 70px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

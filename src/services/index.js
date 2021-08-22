@@ -69,6 +69,17 @@ let Auth = {
   getUser() {
     return JSON.parse(localStorage.getItem('user'));
   },
+  async getOne(username) {
+    let response = await Service.get(`/users/${username}`);
+    let doc = response.data;
+
+    return {
+      id: doc._id,
+      username: doc.username,
+      email: doc.email,
+      password: doc.password,
+    };
+  },
   // IZVLAČENJE TOKENA
   getToken() {
     let user = Auth.getUser();
