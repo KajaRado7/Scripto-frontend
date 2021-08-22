@@ -69,7 +69,7 @@
                 aria-label="Search"
               />
               <button class="btn btnSearch" type="submit">
-                Search
+                <b>Search</b>
               </button>
             </form>
             <!--searchBar ( u doradi )-->
@@ -422,11 +422,13 @@ export default {
   justify-content: center;
   margin: auto;
   width: 50%;
+  height: 50px;
 }
 .btnSearch {
   border-radius: 30px;
   background-color: #d1c1ed;
   margin-left: 10px;
+  color: #8763b5;
 }
 .logo {
   margin-left: 10px;

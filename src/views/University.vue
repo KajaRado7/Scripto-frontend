@@ -54,18 +54,14 @@
   margin-top: 250px;
   margin-left: 100px;
 }
-.item1 {
-  order: 3;
-  flex-grow: 2;
-  width: 100%;
-  margin: 1rem;
-}
+.item1,
 .item2 {
   order: 3;
   flex-grow: 2;
   width: 100%;
   margin: 1rem;
 }
+
 .item3 {
   order: 1;
   flex-grow: 2;
@@ -73,20 +69,8 @@
   margin: 1rem;
 }
 
-.buttonContainer1 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
-}
-.buttonContainer2 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
-}
+.buttonContainer1,
+.buttonContainer2,
 .buttonContainer3 {
   display: flex;
   flex-direction: row;
@@ -94,6 +78,7 @@
   justify-content: space-around;
   align-items: center;
 }
+
 .btnSSU {
   border-radius: 60px;
   background-color: #d1c1ed;

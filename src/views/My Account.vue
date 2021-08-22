@@ -61,6 +61,7 @@ import { required, minLength } from 'vuelidate/lib/validators'; // Vuelidate val
 export default {
   data() {
     return {
+      username: '',
       old_password: '',
       new_password: '',
       error: '',
@@ -84,10 +85,9 @@ export default {
       this.username = await Auth.getOne(this.auth.username);
     },
     // funk. za promijenu lozinke
-    async changeUserPassword(event) {
+    async changeUserPassword() {
       // moguće greške
       if (this.old_password == '' || this.new_password == '') {
-        event.target.classList.add('was-validated');
         return (this.error1 = 'Please fill in all the input fields!');
       } else if (this.old_password == this.new_password) {
         return (this.error2 = 'Passwords must differ from each other!');
@@ -124,11 +124,21 @@ export default {
   height: 70px;
   padding: 8px 20px;
 }
+.alert {
+  margin-top: -23px;
+}
 .error,
 .error1,
 .error2,
 .error3 {
   margin-top: 10px;
+}
+
+.error,
+.error1,
+.error2,
+.error3,
+.alert {
   color: red;
   white-space: nowrap;
   display: flex;
@@ -136,7 +146,7 @@ export default {
   align-items: center;
 }
 .container {
-  margin-top: 70px;
+  margin-top: 150px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -172,7 +182,7 @@ hr {
   border-color: #8763b5;
 }
 .btnSSU {
-  margin: 25px;
+  margin: 20px;
   border-radius: 60px;
   background-color: #d1c1ed;
   color: #8763b5;
