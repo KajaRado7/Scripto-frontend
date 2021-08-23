@@ -1,15 +1,23 @@
 <template>
-  <div class="card">
-    <div class="card-body"></div>
-    <!--U doradi-->
+  <div>
+    <b-card-group deck>
+      <b-card
+        :id="info.script_name"
+        :src="info.script_picture"
+        img-alt="Image"
+        img-top
+        tag="article"
+        style="max-width: 20rem;"
+        class="mb-2 card"
+      ></b-card>
+    </b-card-group>
   </div>
 </template>
 
-<style scoped>
-.card-body {
-  height: 10px;
-  text-align: left;
-  margin-top: -6%;
-  margin-bottom: 5%;
-}
-</style>
+<script>
+export default {
+  props: ['info'],
+};
+</script>
+
+<style scoped></style>
