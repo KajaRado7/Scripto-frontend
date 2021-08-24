@@ -75,51 +75,6 @@
             <!--searchBar ( u doradi )-->
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item dropdown rightIcons">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarScrollDropdownFilter"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <!--FilterIcon------>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="40"
-                    height="40"
-                    fill="currentColor"
-                    class="bi bi-filter-square"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-                    />
-                    <path
-                      d="M6 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
-                    />
-                  </svg>
-                </a>
-                <ul
-                  class="dropdown-menu"
-                  aria-labelledby="navbarScrollingDropdown"
-                >
-                  <li>
-                    <router-link to="/top_ratings">
-                      <a class="dropdown-item" href="#">
-                        Top Ratings
-                      </a>
-                    </router-link>
-                  </li>
-                  <li>
-                    <router-link to="/top_downloads">
-                      <a class="dropdown-item" href="#">Top Downloads</a>
-                    </router-link>
-                  </li>
-                </ul>
-              </li>
-
               <li class="nav-item rightIcons">
                 <router-link to="/my_downloads">
                   <a class="nav-link" href="#">
@@ -240,18 +195,6 @@
           v-if="checkRoute('University')"
         >
           University
-        </h1>
-        <h1
-          class="col-4 d-flex justify-content-center"
-          v-if="checkRoute('Top Ratings')"
-        >
-          Top Ratings
-        </h1>
-        <h1
-          class="col-4 d-flex justify-content-center"
-          v-if="checkRoute('Top Downloads')"
-        >
-          Top Downloads
         </h1>
 
         <div class="col-4 d-flex justify-content-center"></div>

@@ -72,18 +72,6 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Signup.vue'),
   },
-  {
-    path: '/top_ratings',
-    name: 'Top Ratings',
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/Top Ratings.vue'),
-  },
-  {
-    path: '/top_downloads',
-    name: 'Top Downloads',
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/Top Downloads.vue'),
-  },
 ];
 
 const router = new VueRouter({

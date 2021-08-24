@@ -9,9 +9,7 @@
 </template>
 
 <script>
-export default {
-  name: 'My Downloads',
-};
+export default {};
 </script>
 
 <style scoped>

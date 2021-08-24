@@ -34,7 +34,8 @@ Service.interceptors.response.use(
   }
 );
 
-// objekt sa metodama za provjeravanje tokena-------------------------------------//
+// vezan uz pojedine rute(metode za provjeru tokena)-----------------------------//
+
 let Auth = {
   // SIGNUP
   async signup(username, email, password) {
@@ -125,4 +126,47 @@ let Auth = {
   },*/
 };
 
-export { Service, Auth };
+// vezan uz pojedine rute
+let Scripts = {
+  add(script) {
+    return Service.post('/scripts', script);
+  },
+  add_script(script_done) {
+    return Service.post('/scripts', script_done);
+  },
+  // pretraga i dohvat 1 doc.
+  async getOne(id) {
+    let response = await Service.get(`/scripts/${id}`);
+    let doc = response.data;
+    return {
+      id: doc._id,
+      script_picture: doc.script_picture,
+      script_name: doc.script_name,
+      field: doc.field,
+      study: doc.study,
+      university: doc.university,
+      script_rating: doc.script_rating,
+      note: doc.note,
+    };
+  },
+  // pretraga i dohvat VIŠE doc.
+  async getAll(searchTerm) {
+    let options = {};
+
+    if (searchTerm) {
+      options.params = {
+        _any: searchTerm,
+      };
+    }
+    let response = await Service.get('/scripts', options);
+    return response.data.map((doc) => {
+      return {
+        id: doc._id,
+        script_picture: doc.script_picture,
+        script_name: doc.script_name,
+      };
+    });
+  },
+};
+
+export { Service, Auth, Scripts };
