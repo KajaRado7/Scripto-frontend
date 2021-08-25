@@ -1,15 +1,11 @@
 <template>
   <div>
-    <b-card-group deck>
-      <b-card
-        :id="info.script_name"
-        :src="info.script_picture"
-        img-alt="Image"
-        img-top
-        tag="article"
-        style="max-width: 20rem;"
-        class="mb-2 card"
-      ></b-card>
+    <b-card-group deck style="margin: 0;">
+      <b-card class="mt-2 mx-auto"></b-card>
+      <img :src="info.script_picture" />
+      <b-card-text class="mt-2">
+        <p>{{ info.script_name }}</p>
+      </b-card-text>
     </b-card-group>
   </div>
 </template>
@@ -17,6 +13,7 @@
 <script>
 export default {
   props: ['info'],
+  name: 'ScriptCard',
 };
 </script>
 

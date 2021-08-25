@@ -60,19 +60,28 @@
               </li>
             </ul>
 
-            <!--searchBar ( u doradi )-->
-            <form class="search d-flex mx-auto">
-              <input
-                class="form-control "
-                type="Search..."
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btnSearch" type="submit">
-                <b>Search</b>
-              </button>
-            </form>
-            <!--searchBar ( u doradi )-->
+            <div class="search">
+              <router-link to="/scripts">
+                <a class="nav-link" href="#">
+                  <!--searchIcon------>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="40"
+                    height="40"
+                    fill="currentColor"
+                    class="bi bi-search"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                    />
+                  </svg>
+                  <span class="searchText">
+                    <b style="font-size:25px;">Search script by name</b>
+                  </span>
+                </a>
+              </router-link>
+            </div>
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item rightIcons">
@@ -174,9 +183,9 @@
         </h1>
         <h1
           class="col-4 d-flex justify-content-center"
-          v-if="checkRoute('Search Results')"
+          v-if="checkRoute('Scripts')"
         >
-          Search Results
+          Scripts
         </h1>
         <h1
           class="col-4 d-flex justify-content-center"
@@ -315,10 +324,18 @@ export default {
 
 <style lang="scss">
 .username {
+  margin-right: 25px;
+}
+.searchText {
+  white-space: nowrap;
+}
+.searchText,
+.username,
+.bi-search {
   color: white;
 }
 .btnSSU {
-  margin: 25px;
+  margin: 30px;
   border-radius: 60px;
   background-color: #d1c1ed;
   color: #8763b5;
@@ -364,13 +381,12 @@ export default {
 .search {
   justify-content: center;
   margin: auto;
-  width: 50%;
-  height: 50px;
+  width: 60%;
 }
 .btnSearch {
   border-radius: 30px;
   background-color: #d1c1ed;
-  margin-left: 10px;
+  margin-right: 25px;
   color: #8763b5;
 }
 .logo {
@@ -432,11 +448,9 @@ export default {
   margin-left: 26px;
   filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.25));
 }
-.accountIcon {
-  margin-right: 17px;
-}
+
 .rightIcons {
-  padding: 15px;
+  padding: 20px;
 }
 
 .bi-plus-circle-fill {
@@ -444,11 +458,19 @@ export default {
   filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.25));
 }
 
-.bi-download,
-.bi-filter-square,
-.bi-person-circle {
+.bi-download {
+  margin-right: 15px;
   color: white;
-  margin-top: 8px;
+  margin-top: 15px;
+}
+
+.bi-person-circle {
+  margin-right: 30px;
+  color: white;
+  margin-top: 3px;
+}
+.bi-search {
+  margin-right: 30px;
 }
 
 //---ikone------------------------//
