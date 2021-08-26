@@ -35,6 +35,7 @@ import store from '@/store';
 import { Scripts } from '@/services/index.js';
 
 export default {
+  name: 'Scripts',
   components: {
     ScriptCard,
   },
@@ -52,7 +53,6 @@ export default {
   created() {
     this.fetchScripts();
   },
-  name: 'Scripts',
   methods: {
     async fetchScripts(term) {
       term = term || store.searchTerm;

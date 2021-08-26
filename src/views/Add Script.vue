@@ -259,18 +259,8 @@ select {
   width: 100%;
   margin: 1rem;
 }
-.item2 {
-  order: 2;
-  flex-grow: 2;
-  width: 100%;
-  margin: 1rem;
-}
-.item3 {
-  order: 2;
-  flex-grow: 2;
-  width: 100%;
-  margin: 1rem;
-}
+.item2,
+.item3,
 .item4 {
   order: 2;
   flex-grow: 2;
@@ -278,27 +268,9 @@ select {
   margin: 1rem;
 }
 
-.container1 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
-}
-.container2 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
-}
-.container3 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
-}
+.container1,
+.container2,
+.container3,
 .container4 {
   display: flex;
   flex-direction: row;

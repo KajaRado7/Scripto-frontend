@@ -1,106 +1,60 @@
 <template>
   <div class="row">
     <div class="col-2"></div>
-    <div class="col-8 mainContent" style="text-align:justify;">
+    <div v-if="script" class="col-8 mainContent" style="text-align:justify;">
+      <!--slika-->
       <div class="container1">
-        <!--two--->
         <div class="item1">
-          <label for="scriptPicture">
-            <h4>Script picture :</h4>
-          </label>
+          <img :src="script.script_picture" class="card-img-top" />
         </div>
       </div>
-
+      <br />
+      <!--ime skripte-->
       <div class="container2">
-        <!--two--->
         <div class="item2">
-          <label for="scriptName">
-            <h4>Script name :</h4>
-          </label>
-          <hr />
-        </div>
-        <div class="item2">
-          <label for="university">
-            <h4>University :</h4>
-          </label>
-          <hr />
+          <h2 class="scriptName">{{ script.script_name }}</h2>
         </div>
       </div>
-
+      <!--field i study-->
       <div class="container3">
-        <!--three--->
         <div class="item3">
-          <label for="field">
-            <h4>Field :</h4>
-          </label>
+          <h4>{{ script.field }}</h4>
           <hr />
         </div>
         <div class="item3">
-          <label for="note">
-            <h4>Note :</h4>
-          </label>
+          <h4>{{ script.study }}</h4>
           <hr />
         </div>
       </div>
-
+      <!--university i rating-->
       <div class="container4">
-        <!--Comments--->
         <div class="item4">
-          <label for="study">
-            <h4>Study :</h4>
-          </label>
+          <h4>{{ script.university }}</h4>
           <hr />
         </div>
         <div class="item4">
-          <label for="study">
-            <h4>Rate :</h4>
-          </label>
+          <h4>
+            Rating:
+            {{ script.script_rating }}
+          </h4>
           <hr />
-        </div>
-        <div class="item4">
-          <label for="download" class="download">
-            <h4>Download :</h4>
-          </label>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="50"
-            height="50"
-            fill="currentColor"
-            class="bi bi-download"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
-            />
-            <path
-              d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
-            />
-          </svg>
         </div>
       </div>
+      <!--note i preuzimanje-->
       <div class="container5">
-        <!--three--->
         <div class="item5">
-          <label for="comment">
-            <h4>Comments :</h4>
-          </label>
-          <div class="input-group mb-3">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="e.g. Super skripta! Tnxx"
-              aria-label="Recipient's username"
-              aria-describedby="button-addon2"
-            />
-            <button
-              class="btn btn-outline-secondary"
-              type="button"
-              id="button-addon2"
-            >
-              Send
-            </button>
-          </div>
+          <h4>{{ script.note }}</h4>
+          <hr />
         </div>
+        <div class="item55">
+          download
+        </div>
+      </div>
+      <!--komentar i gumbic-->
+      <h2 class="scriptComments">Comments:</h2>
+      <div class="container6">
+        <div class="item6"></div>
+        <div class="item6"></div>
       </div>
     </div>
     <div class="col-2"></div>
@@ -108,138 +62,113 @@
   </div>
 </template>
 <script>
+import ScriptCard from '@/components/ScriptCard.vue';
+import { Scripts } from '@/services/index.js';
+
 export default {
+  props: ['id'],
+  name: 'Script',
+  components: {
+    ScriptCard,
+  },
   data() {
-    return {};
+    return {
+      script: null,
+    };
+  },
+  async mounted() {
+    // dohvati sve podatke o jednoj skripti
+    this.script = await Scripts.getOne(this.id);
   },
 };
 </script>
 <style scoped>
-.mainContent {
-  margin-top: 250px;
-  margin-left: 100px;
+.card-img-top {
+  width: 700px;
+  height: 500px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px 0 rgba(2, 2, 2, 0.602),
+    0 6px 20px 0 rgba(0, 0, 0, 0.637);
 }
-.btn-outline-secondary {
-  border: none;
-  background-color: #d1c1ed;
-  color: #8763b5;
-  width: 20%;
+h4 {
+  text-align: center;
 }
-#footer {
-  width: 100%;
-  height: 80px;
+.scriptName {
+  color: white;
+  text-align: center;
 }
-.bi-download,
-.bi-star-fill {
-  color: #8763b5;
-}
-.download {
-  margin-right: 15px;
-}
-.select {
-  width: 100%;
-}
-.form-control,
-select {
-  background: transparent;
-  border: 3px solid #8763b5;
-  box-sizing: border-box;
-  border-radius: 39px;
-  height: 70px;
-  padding: 8px 20px;
-}
-.slide {
-  margin: 3px;
-  padding: 7px;
-  border-radius: 2em;
-}
-.visually-hidden {
-  color: #8763b5;
-}
-p {
+.scriptComments {
+  margin-top: 20px;
   color: #8763b5;
 }
 hr {
-  border: 1px solid;
-  border-color: #8763b5;
+  border: 4;
+  height: 3px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(109, 36, 158, 0.904),
+    rgba(0, 0, 0, 0)
+  );
 }
-/*.inputPic {
-  height: 150px;
-  background: #d1c1ed6b;
-  border: 3px solid #8763b5;
-  box-sizing: border-box;
-  border-radius: 39px;
-}*/
+.container1,
+.container2,
+.container3,
+.container4,
+.container5,
+.container6 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
 
-.item1 {
-  order: 1;
-  flex-grow: 2;
-  width: 100%;
-  margin: 1rem;
-}
+.item1,
 .item2 {
-  order: 2;
-  flex-grow: 2;
-  width: 100%;
-  margin: 1rem;
-}
-.item3 {
-  order: 2;
-  flex-grow: 2;
-  width: 100%;
-  margin: 1rem;
-}
-.item4 {
-  order: 3;
-  flex-grow: 3;
-  width: 100%;
-  margin: 1rem;
-}
-.item5 {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
   order: 1;
   flex-grow: 1;
   width: 100%;
   margin: 1rem;
 }
-.carousel-inner {
-  width: 100%;
+.item2 {
+  padding: 15px;
+  background-image: radial-gradient(
+    #8763b5,
+    #8763b5,
+    #d1c1ed,
+    transparent,
+    transparent
+  );
+  border-radius: 20px;
 }
-.carouselExampleDark,
-.carousel-control-next,
-.carousel-control-prev {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
+.item3,
+.item4,
+.item5,
+.item55,
+.item6 {
+  order: 1;
+  flex-grow: 2;
+  width: 100%;
+  margin: 1rem;
+}
+.item55 {
+  text-align: center;
   align-items: center;
+  justify-content: center;
 }
 
-.container2 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
+.mainContent {
+  margin-top: 250px;
+  margin-left: 100px;
 }
-.container3 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
-}
-.container4 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
-}
-.container5 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
+
+#footer {
+  width: 100%;
+  height: 80px;
 }
 </style>

@@ -20,19 +20,6 @@
         <b style="color:#16c937">green plus</b>
         button in the upper left corner of the page and……Voila!
       </h3>
-      <!--testing b-card deck-->
-      <b-card-group deck>
-        <b-card
-          title="Card Title"
-          img-src="https://demos.creative-tim.com/argon-dashboard-pro/assets/img/theme/img-1-1000x600.jpg"
-          img-alt="Image"
-          img-top
-          tag="article"
-          style="max-width: 25rem;"
-          class="mb-2"
-        ></b-card>
-      </b-card-group>
-      <!--testing b-card deck-->
     </div>
     <div class="col-2"></div>
   </div>

@@ -36,8 +36,10 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Scripts.vue'),
   },
+  // ruta za zasebnu skriptu
   {
-    path: '/script',
+    path: '/scripts/:id',
+    props: true,
     name: 'Script',
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Script.vue'),
