@@ -2,7 +2,17 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 mainContent" style="text-align:justify;">
-      <div class="containerCard"></div>
+      <!--<div class="container2 mx-auto">
+        <b-card-group deck style="margin: 0;cursor:pointer;">
+          <div
+            @click="gotoDetails(script)"
+            v-for="script in scripts"
+            :key="script.id"
+          >
+            <script-card :info="script" />
+          </div>
+        </b-card-group>
+      </div>-->
     </div>
     <div class="col-2"></div>
   </div>
@@ -16,15 +26,5 @@ export default {};
 .mainContent {
   margin-top: 250px;
   margin-left: 100px;
-}
-hr {
-  border: 1px solid;
-  border-color: #8763b5;
-}
-.containerCard {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
 }
 </style>

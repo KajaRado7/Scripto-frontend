@@ -34,7 +34,7 @@ Service.interceptors.response.use(
   }
 );
 
-// vezan uz pojedine rute(metode za provjeru tokena)-----------------------------//
+// metode za provjeru tokena)-----------------------------//
 
 let Auth = {
   // SIGNUP
@@ -126,7 +126,6 @@ let Auth = {
   },*/
 };
 
-// vezan uz pojedine rute
 let Scripts = {
   add(script) {
     return Service.post('/scripts', script);
@@ -168,5 +167,6 @@ let Scripts = {
     });
   },
 };
+let myDownloads = {};
 
 export { Service, Auth, Scripts };
