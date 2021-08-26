@@ -12,7 +12,7 @@
           placeholder="Search script"
         />
       </div>
-      <div class="mx-auto container2">
+      <div class="container2 mx-auto">
         <b-card-group deck style="margin: 0;cursor:pointer;">
           <div
             @click="gotoDetails(script)"
@@ -67,7 +67,7 @@ export default {
 
 <style scoped>
 .container1 {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .form-control {
   width: 100%;
@@ -80,7 +80,7 @@ export default {
   padding: 8px 20px;
 }
 .mainContent {
-  margin-top: 250px;
+  margin-top: 260px;
   margin-left: 100px;
 }
 </style>
