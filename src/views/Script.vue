@@ -107,16 +107,21 @@ import ScriptCard from '@/components/ScriptCard.vue';
 import { Scripts, myDownloads, Auth, Service } from '@/services/index.js';
 
 export default {
-  props: ['info', 'showComments'],
+  props: ['id', 'info', 'showComments'],
   name: 'Script',
   components: {
     ScriptCard,
   },
   data() {
     return {
+      script: null,
       auth: Auth.state,
       newComment: '',
     };
+  },
+  async mounted() {
+    // dohvati sve podatke o jednoj skripti
+    this.script = await Scripts.getOne(this.id);
   },
   methods: {
     async refresh() {
@@ -149,39 +154,6 @@ export default {
 };
 </script>
 <style scoped>
-.comments {
-  margin: 20px 0;
-}
-
-@-webkit-keyframes fade-in-fwd {
-  0% {
-    -webkit-transform: translateZ(-80px);
-    transform: translateZ(-80px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    opacity: 1;
-  }
-}
-@keyframes fade-in-fwd {
-  0% {
-    -webkit-transform: translateZ(-80px);
-    transform: translateZ(-80px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    opacity: 1;
-  }
-}
-.animate {
-  -webkit-animation: fade-in-fwd 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-  animation: fade-in-fwd 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-}
-
 .bi-download {
   color: #8763b5;
   margin-top: 10px;
@@ -268,7 +240,6 @@ hr {
 
 .mainContent {
   margin-top: 250px;
-  margin-left: 100px;
 }
 
 #footer {

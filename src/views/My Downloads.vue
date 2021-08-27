@@ -25,6 +25,5 @@ export default {};
 <style scoped>
 .mainContent {
   margin-top: 250px;
-  margin-left: 100px;
 }
 </style>

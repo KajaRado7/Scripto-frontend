@@ -2,16 +2,28 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 mainContent" style="text-align:justify;">
-      <p class="note">
-        *
-        <b>Studies</b>
-        : Graduate & Undergraduate*
-      </p>
-      <p class="note">
-        *
-        <b>Rating</b>
-        : 1-5
-      </p>
+      <b-card class="mt-2 mx-auto card1" style="border-radius: 20px;">
+        <b-card-text class="mt-2">
+          <p class="note">
+            *
+            <b>Studies</b>
+            : Graduate , Undergraduate
+          </p>
+          <p class="note">
+            *
+            <b>Rating (★)</b>
+            : 1 - 5
+          </p>
+          <p class="note">
+            *
+            <b>Universities</b>
+            : Juraj Dobrila University of Pula, University of Rijeka, University
+            of Dubrovnik, University of Split, University of Osijek, University
+            of Zadar, University of Zagreb
+          </p>
+        </b-card-text>
+      </b-card>
+
       <div class="container1">
         <input
           v-model="store.searchTerm"
@@ -35,6 +47,7 @@
       </div>
     </div>
     <div class="col-2"></div>
+    <footer id="footer"></footer>
   </div>
 </template>
 
@@ -76,12 +89,17 @@ export default {
 </script>
 
 <style scoped>
+.card1 {
+  margin-bottom: 27px;
+  text-align: justify;
+  background-color: rgb(218, 216, 216);
+  box-shadow: 0 4px 8px 0 rgba(2, 2, 2, 0.287),
+    0 6px 20px 0 rgba(95, 95, 95, 0.075), 0 6px 20px 0 rgba(95, 95, 95, 0.075);
+}
 .note {
   color: #8763b5;
 }
-.container1 {
-  margin-bottom: 30px;
-}
+
 .form-control {
   width: 100%;
   margin: auto;
@@ -91,9 +109,14 @@ export default {
   border-radius: 39px;
   height: 70px;
   padding: 8px 20px;
+  box-shadow: 0 4px 8px 0 rgba(2, 2, 2, 0.287),
+    0 6px 20px 0 rgba(95, 95, 95, 0.075), 0 6px 20px 0 rgba(95, 95, 95, 0.075);
 }
 .mainContent {
-  margin-top: 260px;
-  margin-left: 100px;
+  margin-top: 250px;
+}
+#footer {
+  width: 100%;
+  height: 80px;
 }
 </style>

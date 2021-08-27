@@ -238,7 +238,6 @@ export default {
 }
 .mainContent {
   margin-top: 250px;
-  margin-left: 100px;
 }
 
 .select {
@@ -252,6 +251,8 @@ select {
   border-radius: 39px;
   height: 70px;
   padding: 8px 20px;
+  box-shadow: 0 4px 8px 0 rgba(2, 2, 2, 0.287),
+    0 6px 20px 0 rgba(95, 95, 95, 0.075), 0 6px 20px 0 rgba(95, 95, 95, 0.075);
 }
 .item1 {
   order: 1;
@@ -282,7 +283,7 @@ select {
   border-radius: 60px;
   background-color: #d1c1ed;
   color: #8763b5;
-  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.459));
   width: 100%;
   height: 70px;
   table-layout: fixed;
