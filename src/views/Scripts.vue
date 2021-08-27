@@ -2,6 +2,16 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 mainContent" style="text-align:justify;">
+      <p class="note">
+        *
+        <b>Studies</b>
+        : Graduate & Undergraduate*
+      </p>
+      <p class="note">
+        *
+        <b>Rating</b>
+        : 1-5
+      </p>
       <div class="container1">
         <input
           v-model="store.searchTerm"
@@ -66,6 +76,9 @@ export default {
 </script>
 
 <style scoped>
+.note {
+  color: #8763b5;
+}
 .container1 {
   margin-bottom: 30px;
 }

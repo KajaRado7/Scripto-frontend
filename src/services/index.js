@@ -146,6 +146,11 @@ let Scripts = {
       university: doc.university,
       script_rating: doc.script_rating,
       note: doc.note,
+      comments: (doc.comments || []).map((comm) => {
+        comm.id = comm._id;
+        delete comm._id;
+        return comm;
+      }),
     };
   },
   // pretraga i dohvat VIŠE doc.
@@ -165,6 +170,17 @@ let Scripts = {
         script_name: doc.script_name,
       };
     });
+  },
+  // komentari
+  Comments: {
+    //dodavanje
+    async add(scriptId, comment) {
+      await Service.post(`/scripts/${scriptId}/comments/`, comment);
+    },
+    //brisanje
+    async delete(scriptId, commentId) {
+      await Service.delete(`/scripts/${scriptId}/comments/${commentId}`);
+    },
   },
 };
 let myDownloads = {};

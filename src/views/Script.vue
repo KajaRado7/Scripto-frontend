@@ -67,8 +67,35 @@
       <!--komentar i gumbic-->
       <h2 class="scriptComments">Comments:</h2>
       <div class="container6">
-        <div class="item6"></div>
-        <div class="item6"></div>
+        <div class="item6" v-if="showComments">
+          <div class="comments list-group">
+            <a
+              :key="comm.comments"
+              v-for="comm in info.comments"
+              href="#"
+              class="animate list-group-item list-group-item-action flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <small>{{ comm.username }}</small>
+                <a @click="removeComment(comm.id)" href="#">Delete</a>
+              </div>
+              <small>{{ comm.comment }}</small>
+            </a>
+          </div>
+
+          <form @submit.prevent="postComment" class="form-inline mb-5">
+            <div class="form-group">
+              <input
+                v-model="newComment"
+                type="text"
+                class="form-control"
+                id="imageUrl"
+                placeholder="Any comment?"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary ml-2">Post</button>
+          </form>
+        </div>
       </div>
     </div>
     <div class="col-2"></div>
@@ -80,23 +107,81 @@ import ScriptCard from '@/components/ScriptCard.vue';
 import { Scripts, myDownloads, Auth, Service } from '@/services/index.js';
 
 export default {
-  props: ['id'],
+  props: ['info', 'showComments'],
   name: 'Script',
   components: {
     ScriptCard,
   },
   data() {
     return {
-      script: null,
+      auth: Auth.state,
+      newComment: '',
     };
   },
-  async mounted() {
-    // dohvati sve podatke o jednoj skripti
-    this.script = await Scripts.getOne(this.id);
+  methods: {
+    async refresh() {
+      let script = await Scripts.getOne(this.info.id);
+      this.info.comments = script.comments;
+    },
+    async removeComment(commentId) {
+      let scriptId = this.info.id;
+      await Scripts.Comments.delete(scriptId, commentId);
+      this.refresh();
+    },
+    async postComment() {
+      if (this.newComment) {
+        let scriptId = this.info.id;
+        let comment = {
+          username: this.auth.username,
+          comment: this.newComment,
+        };
+        try {
+          await Scripts.Comments.add(scriptId, comment);
+          this.refresh();
+        } catch (e) {
+          console.error('Error while trying to save the comment: ', e);
+        } finally {
+          this.newComment = '';
+        }
+      }
+    },
   },
 };
 </script>
 <style scoped>
+.comments {
+  margin: 20px 0;
+}
+
+@-webkit-keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+.animate {
+  -webkit-animation: fade-in-fwd 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in-fwd 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
 .bi-download {
   color: #8763b5;
   margin-top: 10px;
