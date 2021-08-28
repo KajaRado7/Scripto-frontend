@@ -269,6 +269,7 @@ export default {
 .username,
 .bi-search {
   color: white;
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.363));
 }
 .btnSSU {
   margin: 30px;
@@ -361,6 +362,7 @@ export default {
 }
 .bi-search {
   margin-right: 30px;
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.363));
 }
 
 //---ikone------------------------//
