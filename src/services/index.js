@@ -183,6 +183,36 @@ let Scripts = {
     },
   },
 };
-let myDownloads = {};
 
-export { Service, Auth, Scripts };
+let Download = {
+  add(d_list) {
+    return Service.post('/my_downloads', d_list);
+  },
+
+  async getAll(list) {
+    let response = await Service.get(`/my_downloads/${list}`);
+    let data = response.data;
+    data = data.map((doc) => {
+      return {
+        script_picture: doc.script_picture,
+        script_name: doc.script_name,
+        script_id: doc.script_id,
+        username: doc.username,
+      };
+    });
+    return data;
+  },
+  async getOne(list) {
+    let response = await Service.get(`/my_downloads/${list}`);
+    let doc = response.data;
+
+    return {
+      script_picture: doc.script_picture,
+      script_name: doc.script_name,
+      script_id: doc.script_id,
+      username: doc.username,
+    };
+  },
+};
+
+export { Service, Auth, Scripts, Download };

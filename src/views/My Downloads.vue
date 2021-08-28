@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8 mainContent" style="text-align:justify;">
-      <!--<div class="container2 mx-auto">
-        <b-card-group deck style="margin: 0;cursor:pointer;">
+      <div class="container2 mx-auto">
+        <!--<b-card-group deck style="margin: 0;cursor:pointer;">
           <div
             @click="gotoDetails(script)"
             v-for="script in scripts"
@@ -11,15 +11,27 @@
           >
             <script-card :info="script" />
           </div>
-        </b-card-group>
-      </div>-->
+        </b-card-group>-->
+      </div>
     </div>
     <div class="col-2"></div>
   </div>
 </template>
 
 <script>
-export default {};
+import ScriptCard from '@/components/ScriptCard.vue';
+import { Scripts, Download, Service } from '@/services/index.js';
+
+export default {
+  data() {
+    return {
+      list: [],
+    };
+  },
+  components: {
+    ScriptCard,
+  },
+};
 </script>
 
 <style scoped>

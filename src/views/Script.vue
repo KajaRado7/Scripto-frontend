@@ -47,21 +47,13 @@
           <hr />
         </div>
         <div class="item55">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="60"
-            height="60"
-            fill="currentColor"
-            class="bi bi-download"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
-            />
-            <path
-              d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
-            />
-          </svg>
+          <form @submit.prevent="add_download()">
+            <button type="submit" class="btn  btnSSU">
+              <h4 class="btnText">Download</h4>
+            </button>
+          </form>
+          <p class="message">{{ message }}</p>
+          <p class="error">{{ error }}</p>
         </div>
       </div>
       <!--komentar i gumbic-->
@@ -69,6 +61,8 @@
       <div class="container6">
         <div class="item6" v-if="showComments">
           <div class="comments list-group">
+            <!--cini mi se da ju tu negdje greska(v-if/:key----->
+            )
             <a
               :key="comm.comments"
               v-for="comm in info.comments"
@@ -83,7 +77,7 @@
             </a>
           </div>
 
-          <form @submit.prevent="postComment" class="form-inline mb-5">
+          <form @submit.prevent="postComment()" class="form-inline mb-5">
             <div class="form-group">
               <input
                 v-model="newComment"
@@ -104,7 +98,7 @@
 </template>
 <script>
 import ScriptCard from '@/components/ScriptCard.vue';
-import { Scripts, myDownloads, Auth, Service } from '@/services/index.js';
+import { Scripts, Download, Auth } from '@/services/index.js';
 
 export default {
   props: ['id', 'info', 'showComments'],
@@ -117,13 +111,42 @@ export default {
       script: null,
       auth: Auth.state,
       newComment: '',
+      message: '',
+      error: '',
+      list: [],
     };
+  },
+  created() {
+    this.callList();
   },
   async mounted() {
     // dohvati sve podatke o jednoj skripti
     this.script = await Scripts.getOne(this.id);
   },
   methods: {
+    async callList() {
+      try {
+        this.list = await Download.getOne(this.id);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async add_download() {
+      let d_list = {
+        script_picture: this.script.script_picture,
+        script_name: this.script.script_name,
+        script_id: this.script.id,
+        username: this.auth.username,
+      };
+      if (this.list.script_name == this.script.script_name) {
+        this.error = 'Script has already been added!';
+      } else {
+        // ako je sve proslo uspjesno:
+        let s_list = await Download.add(d_list);
+        console.log('Downloaded script: ', s_list.data);
+        this.message = 'Script has been added to your downloads!';
+      }
+    },
     async refresh() {
       let script = await Scripts.getOne(this.info.id);
       this.info.comments = script.comments;
@@ -154,10 +177,23 @@ export default {
 };
 </script>
 <style scoped>
-.bi-download {
+.message {
   color: #8763b5;
-  margin-top: 10px;
 }
+.btnSSU {
+  border-radius: 60px;
+  background-color: #d1c1ed;
+  color: #8763b5;
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.459));
+  width: 100%;
+  height: 70px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.btnText {
+  margin: 13px;
+}
+
 .card-img-top {
   width: 700px;
   height: 500px;

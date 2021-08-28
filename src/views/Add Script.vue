@@ -215,6 +215,8 @@ export default {
         let script_saved = await Scripts.add_script(script_done);
         console.log('Saved script: ', script_saved);
         this.message = 'Script added to Scripto! :)';
+        // refresh trenutne stranice
+        this.$router.go();
       }
     },
   },
