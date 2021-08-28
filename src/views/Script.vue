@@ -133,9 +133,9 @@ export default {
     },
     async add_download() {
       let d_list = {
+        script_id: this.script_id,
         script_picture: this.script.script_picture,
         script_name: this.script.script_name,
-        script_id: this.script.id,
         username: this.auth.username,
       };
       if (this.list.script_name == this.script.script_name) {

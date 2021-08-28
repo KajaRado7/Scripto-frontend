@@ -194,9 +194,9 @@ let Download = {
     let data = response.data;
     data = data.map((doc) => {
       return {
+        script_id: doc.script_id,
         script_picture: doc.script_picture,
         script_name: doc.script_name,
-        script_id: doc.script_id,
         username: doc.username,
       };
     });
@@ -207,9 +207,9 @@ let Download = {
     let doc = response.data;
 
     return {
+      script_id: doc.script_id,
       script_picture: doc.script_picture,
       script_name: doc.script_name,
-      script_id: doc.script_id,
       username: doc.username,
     };
   },
