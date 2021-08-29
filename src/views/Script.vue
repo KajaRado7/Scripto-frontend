@@ -206,6 +206,8 @@ export default {
 .comment_section {
   margin-bottom: 5px;
   border-radius: 39px;
+  box-shadow: 0 4px 8px 0 rgba(2, 2, 2, 0.287),
+    0 6px 20px 0 rgba(95, 95, 95, 0.075), 0 6px 20px 0 rgba(95, 95, 95, 0.075);
 }
 .form-control {
   border-radius: 0%;
