@@ -131,7 +131,7 @@ export default {
         console.log(e);
       }
     },
-    async add_download() {
+    async add_download(e) {
       let d_list = {
         script_id: this.script_id,
         script_picture: this.script.script_picture,
@@ -177,6 +177,9 @@ export default {
 };
 </script>
 <style scoped>
+.error {
+  color: red;
+}
 .message {
   color: #8763b5;
 }
