@@ -48,7 +48,7 @@
         </div>
         <div class="item55">
           <form @submit.prevent="add_download()">
-            <button type="submit" class="btn  btnSSU">
+            <button type="submit" class="btn  btnSSU1">
               <h4 class="btnText">Download</h4>
             </button>
           </form>
@@ -59,35 +59,42 @@
       <!--komentar i gumbic-->
       <h2 class="scriptComments">Comments:</h2>
       <div class="container6">
-        <div class="item6" v-if="showComments">
-          <div class="comments list-group">
-            <!--cini mi se da ju tu negdje greska(v-if/:key----->
-            )
-            <a
-              :key="comm.comments"
-              v-for="comm in info.comments"
-              href="#"
-              class="animate list-group-item list-group-item-action flex-column align-items-start"
+        <div class="item6">
+          <form @submit.prevent="add_comment">
+            <b-card
+              class=" mx-auto"
+              style="background-color:transparent;border: none !important;"
             >
-              <div class="d-flex w-100 justify-content-between">
-                <small>{{ comm.username }}</small>
-                <a @click="removeComment(comm.id)" href="#">Delete</a>
-              </div>
-              <small>{{ comm.comment }}</small>
-            </a>
-          </div>
-
-          <form @submit.prevent="postComment()" class="form-inline mb-5">
-            <div class="form-group">
+              <transition-group tag="div" name="fade">
+                <div
+                  class="list-group-item list-group-item-action flex-column comment_section "
+                  v-for="comments in comments"
+                  :key="comments.comment"
+                >
+                  {{ comments.comment }}
+                  <br />
+                  by
+                  <b style="color:#8763b5">
+                    {{ comments.username }}
+                  </b>
+                  <a v-if="auth.username == comments.username">
+                    <a
+                      class="close"
+                      @click.prevent="del_com(comments.comment)"
+                    />
+                  </a>
+                </div>
+              </transition-group>
               <input
-                v-model="newComment"
+                v-model="comment"
                 type="text"
                 class="form-control"
-                id="imageUrl"
-                placeholder="Any comment?"
+                placeholder="e.g. Thanks for the script!"
               />
-            </div>
-            <button type="submit" class="btn btn-primary ml-2">Post</button>
+              <button type="submit" class="btn btnSSU2  comm">
+                <b>Comment</b>
+              </button>
+            </b-card>
           </form>
         </div>
       </div>
@@ -98,10 +105,16 @@
 </template>
 <script>
 import ScriptCard from '@/components/ScriptCard.vue';
-import { Scripts, Download, Auth } from '@/services/index.js';
+import {
+  Scripts,
+  Download,
+  Comments,
+  Auth,
+  Service,
+} from '@/services/index.js';
 
 export default {
-  props: ['id', 'info', 'showComments'],
+  props: ['id'],
   name: 'Script',
   components: {
     ScriptCard,
@@ -110,20 +123,26 @@ export default {
     return {
       script: null,
       auth: Auth.state,
-      newComment: '',
       message: '',
       error: '',
+      error2: '',
       list: [],
+      comments: [],
+      comment: '',
     };
   },
   created() {
     this.callList();
+    this.callCom();
   },
   async mounted() {
     // dohvati sve podatke o jednoj skripti
     this.script = await Scripts.getOne(this.id);
   },
   methods: {
+    async callCom() {
+      this.comments = await Comments.getAll(this.id);
+    },
     async callList() {
       try {
         this.list = await Download.getOne(this.id);
@@ -131,14 +150,18 @@ export default {
         console.log(e);
       }
     },
-    async add_download(e) {
+    async add_download() {
       let d_list = {
         script_id: this.script_id,
         script_picture: this.script.script_picture,
         script_name: this.script.script_name,
         username: this.auth.username,
       };
-      if (this.list.script_name == this.script.script_name) {
+      if (
+        // ako smo vec dodali skriptu u kolekciju
+        this.list.script_name == this.script.script_name &&
+        this.list.username == this.auth.username
+      ) {
         this.error = 'Script has already been added!';
       } else {
         // ako je sve proslo uspjesno:
@@ -147,43 +170,134 @@ export default {
         this.message = 'Script has been added to your downloads!';
       }
     },
-    async refresh() {
-      let script = await Scripts.getOne(this.info.id);
-      this.info.comments = script.comments;
-    },
-    async removeComment(commentId) {
-      let scriptId = this.info.id;
-      await Scripts.Comments.delete(scriptId, commentId);
-      this.refresh();
-    },
-    async postComment() {
-      if (this.newComment) {
-        let scriptId = this.info.id;
-        let comment = {
-          username: this.auth.username,
-          comment: this.newComment,
-        };
-        try {
-          await Scripts.Comments.add(scriptId, comment);
-          this.refresh();
-        } catch (e) {
-          console.error('Error while trying to save the comment: ', e);
-        } finally {
-          this.newComment = '';
-        }
+    // objava komentara
+    async add_comment(e) {
+      let comm = {
+        comment: this.comment,
+        script_id: this.script.id,
+        username: this.auth.username,
+      };
+      if (this.comment == '') {
+        this.error2 = 'Input field is empty!';
+        e.preventDefault();
+      } else {
+        let s_list = await Comments.add(comm);
+        console.log('Saved comment: ', s_list.data);
+        this.callCom();
+        this.comment = '';
       }
+    },
+    // brisanje komentara
+    del_com(comment_name) {
+      let comments = {
+        comment_name: comment_name,
+      };
+      Service.post('/comments/delete/' + comment_name, comments).then(
+        (result) => {
+          console.log('Comment ', result, ' has been deleted!');
+          this.callCom();
+        }
+      );
     },
   },
 };
 </script>
 <style scoped>
+.comment_section {
+  margin-bottom: 5px;
+  border-radius: 39px;
+}
+.form-control {
+  border-radius: 0%;
+  margin-top: 20px;
+  background: transparent;
+  border: 3px solid #8763b5;
+  box-sizing: border-box;
+  height: 70px;
+  padding: 8px 20px;
+  box-shadow: 0 4px 8px 0 rgba(2, 2, 2, 0.287),
+    0 6px 20px 0 rgba(95, 95, 95, 0.075), 0 6px 20px 0 rgba(95, 95, 95, 0.075);
+}
+.add {
+  max-width: 450px;
+  width: 350px;
+  background-color: #8763b5;
+  border: none;
+  color: white;
+  text-align: center;
+  height: 35px;
+  border-radius: 4px;
+}
+.del {
+  max-width: 450px;
+  width: 350px;
+  background-color: #7d7d7d;
+  border: none;
+  color: white;
+  text-align: center;
+  height: 35px;
+  border-radius: 4px;
+}
+.close {
+  position: absolute;
+  right: 32px;
+  top: 23px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 23px;
+  width: 2px;
+}
+.close:before {
+  transform: rotate(45deg);
+  background-color: black;
+}
+.close:after {
+  transform: rotate(-45deg);
+  background-color: black;
+}
+.close:hover:after {
+  background-color: #8763b5;
+}
+.close:hover:before {
+  background-color: #8763b5;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .error {
   color: red;
 }
 .message {
   color: #8763b5;
 }
-.btnSSU {
+.btnSSU2 {
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  background-color: #d1c1ed;
+  color: #8763b5;
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.459));
+  width: 100%;
+  height: 70px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.btnSSU1 {
   border-radius: 60px;
   background-color: #d1c1ed;
   color: #8763b5;

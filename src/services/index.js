@@ -146,11 +146,6 @@ let Scripts = {
       university: doc.university,
       script_rating: doc.script_rating,
       note: doc.note,
-      comments: (doc.comments || []).map((comm) => {
-        comm.id = comm._id;
-        delete comm._id;
-        return comm;
-      }),
     };
   },
   // pretraga i dohvat VIŠE doc.
@@ -170,17 +165,6 @@ let Scripts = {
         script_name: doc.script_name,
       };
     });
-  },
-  // komentari
-  Comments: {
-    //dodavanje
-    async add(scriptId, comment) {
-      await Service.post(`/scripts/${scriptId}/comments/`, comment);
-    },
-    //brisanje
-    async delete(scriptId, commentId) {
-      await Service.delete(`/scripts/${scriptId}/comments/${commentId}`);
-    },
   },
 };
 
@@ -215,4 +199,23 @@ let Download = {
   },
 };
 
-export { Service, Auth, Scripts, Download };
+let Comments = {
+  add(comm) {
+    return Service.post('/comments', comm);
+  },
+  // dohvati komentare
+  async getAll(com) {
+    let response = await Service.get(`/comments/${com}`);
+    let data = response.data;
+    data = data.map((doc) => {
+      return {
+        comment: doc.comment,
+        script_id: doc.script_id,
+        username: doc.username,
+      };
+    });
+    return data;
+  },
+};
+
+export { Service, Auth, Scripts, Download, Comments };
