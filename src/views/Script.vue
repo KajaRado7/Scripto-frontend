@@ -284,9 +284,11 @@ export default {
 
 .error {
   color: red;
+  margin-top: 20px;
 }
 .message {
   color: #8763b5;
+  margin-top: 20px;
 }
 .btnSSU2 {
   border-bottom-left-radius: 60px;
