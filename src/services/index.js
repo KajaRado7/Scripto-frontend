@@ -158,6 +158,7 @@ let Scripts = {
       };
     }
     let response = await Service.get('/scripts', options);
+    console.log(response);
     return response.data.map((doc) => {
       return {
         id: doc._id,
@@ -173,9 +174,10 @@ let Download = {
     return Service.post('/my_downloads', d_list);
   },
 
-  async getAll(list) {
+  /*async getAll(list) {
     let response = await Service.get(`/my_downloads/${list}`);
     let data = response.data;
+    console.log(response);
     data = data.map((doc) => {
       return {
         script_id: doc.script_id,
@@ -185,7 +187,7 @@ let Download = {
       };
     });
     return data;
-  },
+  },*/
   async getOne(list) {
     let response = await Service.get(`/my_downloads/${list}`);
     let doc = response.data;
