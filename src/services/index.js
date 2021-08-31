@@ -158,7 +158,7 @@ let Scripts = {
       };
     }
     let response = await Service.get('/scripts', options);
-    console.log(response);
+    console.log('Available scripts: ', response);
     return response.data.map((doc) => {
       return {
         id: doc._id,
@@ -166,38 +166,6 @@ let Scripts = {
         script_name: doc.script_name,
       };
     });
-  },
-};
-
-let Download = {
-  add(d_list) {
-    return Service.post('/my_downloads', d_list);
-  },
-
-  /*async getAll(list) {
-    let response = await Service.get(`/my_downloads/${list}`);
-    let data = response.data;
-    console.log(response);
-    data = data.map((doc) => {
-      return {
-        script_id: doc.script_id,
-        script_picture: doc.script_picture,
-        script_name: doc.script_name,
-        username: doc.username,
-      };
-    });
-    return data;
-  },*/
-  async getOne(list) {
-    let response = await Service.get(`/my_downloads/${list}`);
-    let doc = response.data;
-
-    return {
-      script_id: doc.script_id,
-      script_picture: doc.script_picture,
-      script_name: doc.script_name,
-      username: doc.username,
-    };
   },
 };
 
@@ -220,4 +188,4 @@ let Comments = {
   },
 };
 
-export { Service, Auth, Scripts, Download, Comments };
+export { Service, Auth, Scripts, Comments };

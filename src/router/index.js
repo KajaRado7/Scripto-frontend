@@ -25,12 +25,6 @@ const routes = [
       import(/* webpackChunkName: "about" */ '../views/My Account.vue'),
   },
   {
-    path: '/my_downloads',
-    name: 'My Downloads',
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/My Downloads.vue'),
-  },
-  {
     path: '/scripts',
     name: 'Scripts',
     component: () =>

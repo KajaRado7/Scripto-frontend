@@ -87,29 +87,6 @@
             </div>
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item rightIcons">
-                <router-link to="/my_downloads">
-                  <a class="nav-link" href="#">
-                    <!--DownloadIcon------>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="40"
-                      height="40"
-                      fill="currentColor"
-                      class="bi bi-download"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
-                      />
-                      <path
-                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
-                      />
-                    </svg>
-                  </a>
-                </router-link>
-              </li>
-
               <!--pozivamo funk. za logout-->
               <button @click="logout()" class="btn btn-lg btnSSU">
                 <h5 class="btnText"><b>Logout</b></h5>
@@ -174,12 +151,6 @@
         </h1>
         <h1
           class="col-4 d-flex justify-content-center"
-          v-if="checkRoute('My Downloads')"
-        >
-          My Downloads
-        </h1>
-        <h1
-          class="col-4 d-flex justify-content-center"
           v-if="checkRoute('Script')"
         >
           Script
@@ -190,24 +161,6 @@
         >
           Scripts
         </h1>
-        <h1
-          class="col-4 d-flex justify-content-center"
-          v-if="checkRoute('Study')"
-        >
-          Study
-        </h1>
-        <h1
-          class="col-4 d-flex justify-content-center"
-          v-if="checkRoute('Field')"
-        >
-          Field
-        </h1>
-        <h1
-          class="col-4 d-flex justify-content-center"
-          v-if="checkRoute('University')"
-        >
-          University
-        </h1>
 
         <div class="col-4 d-flex justify-content-center"></div>
       </span>
@@ -215,11 +168,7 @@
     <!---HeadingNav----------------------------------------------------->
 
     <div class="row ">
-      <div class="col-2">
-        <!---LeftNav-------------------------------------------------------->
-
-        <!---LeftNav-------------------------------------------------------->
-      </div>
+      <div class="col-2"></div>
       <div class="col-8"></div>
       <div class="col-2"></div>
     </div>
@@ -228,7 +177,6 @@
 </template>
 
 <script>
-import router from '@/router';
 import { Auth } from '@/services';
 
 export default {
@@ -344,13 +292,6 @@ export default {
 
 .bi-plus-circle-fill {
   color: #16c937;
-  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.363));
-}
-
-.bi-download {
-  margin-right: 15px;
-  color: white;
-  margin-top: 15px;
   filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.363));
 }
 

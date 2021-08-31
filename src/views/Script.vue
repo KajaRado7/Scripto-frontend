@@ -46,15 +46,6 @@
           <h4>{{ script.note }}</h4>
           <hr />
         </div>
-        <div class="item55">
-          <form @submit.prevent="add_download()">
-            <button type="submit" class="btn  btnSSU1">
-              <h4 class="btnText">Download</h4>
-            </button>
-          </form>
-          <p class="message">{{ message }}</p>
-          <p class="error">{{ error }}</p>
-        </div>
       </div>
       <!--komentar i gumbic-->
       <h2 class="scriptComments">Comments:</h2>
@@ -105,13 +96,7 @@
 </template>
 <script>
 import ScriptCard from '@/components/ScriptCard.vue';
-import {
-  Scripts,
-  Download,
-  Comments,
-  Auth,
-  Service,
-} from '@/services/index.js';
+import { Scripts, Comments, Auth, Service } from '@/services/index.js';
 
 export default {
   props: ['id'],
@@ -123,16 +108,12 @@ export default {
     return {
       script: null,
       auth: Auth.state,
-      message: '',
       error: '',
-      error2: '',
-      list: [],
       comments: [],
       comment: '',
     };
   },
   created() {
-    this.callList();
     this.callCom();
   },
   async mounted() {
@@ -143,33 +124,6 @@ export default {
     async callCom() {
       this.comments = await Comments.getAll(this.id);
     },
-    async callList() {
-      try {
-        this.list = await Download.getOne(this.id);
-      } catch (e) {
-        console.log(e);
-      }
-    },
-    async add_download() {
-      let d_list = {
-        script_id: this.script_id,
-        script_picture: this.script.script_picture,
-        script_name: this.script.script_name,
-        username: this.auth.username,
-      };
-      if (
-        // ako smo vec dodali skriptu u kolekciju
-        this.list.script_name == this.script.script_name &&
-        this.list.username == this.auth.username
-      ) {
-        this.error = 'Script has already been added!';
-      } else {
-        // ako je sve proslo uspjesno:
-        let s_list = await Download.add(d_list);
-        console.log('Downloaded script: ', s_list.data);
-        this.message = 'Script has been added to your downloads!';
-      }
-    },
     // objava komentara
     async add_comment(e) {
       let comm = {
@@ -178,7 +132,7 @@ export default {
         username: this.auth.username,
       };
       if (this.comment == '') {
-        this.error2 = 'Input field is empty!';
+        this.error = 'Input field is empty!';
         e.preventDefault();
       } else {
         let s_list = await Comments.add(comm);
