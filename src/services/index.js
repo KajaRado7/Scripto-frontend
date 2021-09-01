@@ -3,7 +3,7 @@ import $router from '@/router';
 
 // vezan uz konkretni backend(poziva ga)-----------------------------------------//
 let Service = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://scripto-app.herokuapp.com/',
   timeout: 3000, // 3 sekunde
   headers: {
     Accept: 'application/json',
