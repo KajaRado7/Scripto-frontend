@@ -12,10 +12,8 @@
             for one, everything is at your fingertips!
             <br />
             <br />
-            In terms of finding the required script, you have many options:
-            categorization by field, study and university, search by name or
-            creator, and even ranking depending on the number of downloads or
-            the highest grade.
+            In terms of finding the required script, you have many search
+            options: by name, study, university and even rating!
             <br />
             <br />
             If you are the creator of the best script ever, simply click on the

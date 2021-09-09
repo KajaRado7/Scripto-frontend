@@ -6,6 +6,14 @@
         <div class="container">
           <!--input fields trebaju ici ovdje-->
           <form novalidate @submit.prevent="changeUserPassword">
+            <br />
+            <br />
+            <div class="item">
+              <label>Email</label>
+              <br />
+              {{ email.email }}
+              <hr />
+            </div>
             <div class="item">
               <label>Old Password</label>
               <br />
@@ -68,6 +76,8 @@ export default {
       error2: '',
       error3: '',
       error4: '',
+      auth: Auth.state,
+      email: '',
     };
   }, // definiranje pravila potrebnih za kreiranje nove lozinke
   validations: {
@@ -76,8 +86,17 @@ export default {
       minLength: minLength(7),
     },
   },
-
+  created() {
+    this.getEmail();
+  },
   methods: {
+    async getEmail() {
+      try {
+        this.email = await Auth.getOne(this.auth.username);
+      } catch (e) {
+        console.log(e);
+      }
+    },
     // funk. za promijenu lozinke
     async changeUserPassword() {
       // moguće greške

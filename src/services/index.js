@@ -113,7 +113,7 @@ let Auth = {
       }
     },
   },
-  /*async getOne(username) {
+  async getOne(username) {
     let response = await Service.get(`/users/${username}`);
     let doc = response.data;
 
@@ -123,7 +123,7 @@ let Auth = {
       email: doc.email,
       password: doc.password,
     };
-  },*/
+  },
 };
 
 let Scripts = {
